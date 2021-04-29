@@ -1,9 +1,5 @@
-//
-// Created by Keith Lancaster on 3/13/21.
-//
-
-#ifndef PROGRAMMING_ASSIGNMENT_3KL_PROCESSOR_H
-#define PROGRAMMING_ASSIGNMENT_3KL_PROCESSOR_H
+#ifndef PROCESSOR_H
+#define PROCESSOR_H
 
 
 #include <cstdint>
@@ -15,4 +11,4 @@ public:
 };
 
 
-#endif //PROGRAMMING_ASSIGNMENT_3KL_PROCESSOR_H
+#endif //PROCESSOR_H
