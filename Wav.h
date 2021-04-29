@@ -10,7 +10,7 @@
  * It makes many assumptions about the format of the wave as a result.
  * It will NOT work with stereo files or any other bit-depth than 8 bits.
  */
-#include "WaveHeader.h"
+#include "WavHeader.h"
 
 class Wav {
 public:
