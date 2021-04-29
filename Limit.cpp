@@ -6,7 +6,7 @@
 Limiter::Limiter(){
 }
 Limiter::~Limiter(){
-	std::cout<<"ha your gun banned"<<std::endl;
+	
 }
 void Limiter::processBuffer(unsigned char* buffer, int bufferSize){
 	for(int i = 0; i < bufferSize; i++) {
