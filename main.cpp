@@ -24,8 +24,23 @@
 void fn(){
 
 }
+string getFileName()
+{
+    string ODP; //Name of the file without the .wav extension
+    std::cout << "Enter File Name (without .wav file extension)" << std::endl;
+    std::cin >> ODP;
+    ODP = ODP + ".wav"
+    return ODP;
+}
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    string choiceOne; //Initial user choice to continue using program or to exit program
+    std::cout << "Enter Yes to continue or enter No to exit" << std:endl
+    std::cin >> choiceOne
+    if(choiceOne == "yes" || "Yes")
+    {
+        string fileName = getFileName();
+        switch()
+    }
     return 0;
 }
