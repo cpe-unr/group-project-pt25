@@ -44,7 +44,7 @@ int getAmount()
 int getChoice()
 {
 	int choice = 0;
-	std::cout << "PROCESSORS\n 1. Limiter\n 2. Echo\n 3. Noise Gate\n 4. Normalizer\n Enter your choice: " << std::endl;
+	std::cout << "PROCESSORS\n 1. Limiter\n 2. Echo\n 3. Noise Gate\n 4. Normalizer\n 0. End Program\n Enter your choice: " << std::endl;
 	std::cin >> choice;
 	return choice;
 }
@@ -69,6 +69,8 @@ int main() {
 			case 4:
 				//Normalizer
 				break;
+			case 0:
+				return 0;
   			default:
 			  	std::cout << "Please enter a valid option!" << std::endl;
 				i--;
