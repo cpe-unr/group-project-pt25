@@ -24,23 +24,55 @@
 void fn(){
 
 }
-string getFileName()
+std::string getFileName()
 {
-    string ODP; //Name of the file without the .wav extension
-    std::cout << "Enter File Name (without .wav file extension)" << std::endl;
-    std::cin >> ODP;
-    ODP = ODP + ".wav"
-    return ODP;
+    std::string fileName; //Name of the file without the .wav extension
+    std::cout << "Enter the File Name (without .wav extension): " << std::endl;
+    std::cin >> fileName;
+    fileName = fileName + ".wav";
+    return fileName;
+}
+
+int getAmount()
+{
+	int amount = 0;
+	std::cout << "How many modifications would you like to make?: " << std::endl;
+	std::cin >> amount;
+	return amount;
+}
+
+int getChoice()
+{
+	int choice = 0;
+	std::cout << "PROCESSORS\n 1. Limiter\n 2. Echo\n 3. Noise Gate\n 4. Normalizer\n Enter your choice: " << std::endl;
+	std::cin >> choice;
+	return choice;
 }
 
 int main() {
-    string choiceOne; //Initial user choice to continue using program or to exit program
-    std::cout << "Enter Yes to continue or enter No to exit" << std:endl
-    std::cin >> choiceOne
-    if(choiceOne == "yes" || "Yes")
-    {
-        string fileName = getFileName();
-        switch()
-    }
+	std::string fileName = getFileName();
+	int amount = getAmount();
+	int choice = 0;
+	for(int i = 0; i < amount; i++)
+	{
+		choice = getChoice();
+		switch(choice) {
+  			case 1:
+				//Limiter
+    			break;
+  			case 2:
+				//Echo
+    			break;
+			case 3:
+				//Noise Gate
+    			break;
+			case 4:
+				//Normalizer
+				break;
+  			default:
+			  	std::cout << "Please enter a valid option!" << std::endl;
+				i--;
+			  	break;
+	}
     return 0;
 }
