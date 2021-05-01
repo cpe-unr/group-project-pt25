@@ -1,11 +1,11 @@
-//
-// Created by Keith Lancaster on 3/13/21.
-//
+/*
+ * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
+ * Date: May 2, 2021
+ * Assignment: Semester Project
+*/
 
-#ifndef WAVEHEADER_H
-#define WAVEHEADER_H
+#pragma once
 
-// This header copied from https://gist.github.com/Jon-Schneider/8b7c53d27a7a13346a643dac9c19d34f
 /*
  * https://docs.fileformat.com/audio/wav/
  * Positions	Sample Value	Description
@@ -23,6 +23,7 @@
 37-40	“data”	“data” chunk header. Marks the beginning of the data section.
 41-44	File size (data)	Size of the data section.
  */
+
 typedef struct wav_header {
     // RIFF Header
     char riff_header[4]; // Contains "RIFF"
@@ -44,4 +45,3 @@ typedef struct wav_header {
     int data_bytes; // Number of bytes in data. Number of samples * num_channels * sample byte size
     // char bytes[]; // Remainder of wave file is bytes
 } wav_header;
-#endif //PROGRAMMING_ASSIGNMENT_3KL_WAVEHEADER_H

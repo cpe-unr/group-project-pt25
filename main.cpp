@@ -1,3 +1,9 @@
+/*
+ * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
+ * Date: May 2, 2021
+ * Assignment: Semester Project
+*/
+
 /** @file */
 #include <iostream>
 
@@ -33,12 +39,17 @@ std::string getFileName()
     return fileName;
 }
 
-std::string setNewFileName()
+std::string setNewFileName(std::string fileName)
 {
 	std::string newFileName;
-	std::cout << "Enter a new file name (different from original and without .wav extension)" << std::endl;;
-	std::cin >> newFileName;
-	newFileName = newFileName + ".wav";
+	do
+	{
+		std::cout << "Enter a new file name (different from original and without .wav extension)" << std::endl;;
+		std::cin >> newFileName;
+		newFileName = newFileName + ".wav";
+		newFileName = setNewFileName(fileName);
+	}
+	while(newFileName == fileName);
 	return newFileName;
 }
 
@@ -50,23 +61,30 @@ int getAmount()
 	return amount;
 }
 
-int getChoice()
+int getMenuChoice()
 {
 	int choice = 0;
-	std::cout << "PROCESSORS\n 1. Echo\n 2. Noise Gate\n 3. Normalize\n 4. Stop Modifying\n 0. End Program\n Enter your choice: " << std::endl;
+	std::cout << "AUDIO MENU\n 1. Read File\n2. Modify Metadata\n3. Process File\n4. Display File Information\n0. End Program\n";
 	std::cin >> choice;
 	return choice;
 }
 
-int main() {
-	std::string fileName = getFileName();
-	std::string newFileName;
-	int amount = getAmount();
+int getProcessorChoice()
+{
 	int choice = 0;
+	std::cout << "PROCESSORS\n 1. Echo\n 2. Noise Gate\n 3. Normalize\n 4. Stop Modifying\n 0. End Program\n";
+	std::cin >> choice;
+	return choice;
+}
+
+void processorMenu()
+{
+	int amount = getAmount();
+	int processorChoice = 0;
 	for(int i = 0; i < amount; i++)
 	{
-		choice = getChoice();
-		switch(choice) {
+		processorChoice = getProcessorChoice();
+		switch(processorChoice) {
   			case 1:
 				std::cout << "Echo" << std::endl;
     			break;
@@ -81,18 +99,42 @@ int main() {
 				i = amount;
 				break;
 			case 0:
-				return 0;
+				exit;
   			default:
 			  	std::cout << "Please enter a valid option!" << std::endl;
 				i--;
 			  	break;
 			}
 	}
+}
+
+int main() {
+	std::string fileName = getFileName();
+	std::string newFileName = setNewFileName(fileName);
+	int menuChoice = 0;
 	do
 	{
-		newFileName = setNewFileName();
-	}
-	while(newFileName == fileName);
-
+		menuChoice = getMenuChoice();
+		switch(menuChoice) {
+  			case 1:
+				std::cout << "Read File" << std::endl;
+    			break;
+  			case 2:
+				std::cout << "Modify Metadata" << std::endl;
+    			break;
+			case 3:
+				std::cout << "Process File" << std::endl;
+    			break;
+			case 4:
+				std::cout << "Display File Information" << std::endl;
+				break;
+			case 0:
+				return 0;
+  			default:
+			  	std::cout << "Please enter a valid option!" << std::endl;
+			  	break;
+			}
+	} while (menuChoice != 0);
+	processorMenu();
     return 0;
 }

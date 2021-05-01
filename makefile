@@ -1,6 +1,5 @@
 audioprocessor: main.cpp Wav.o Echo.o Noisegate.o CSV.o Normalization.o
-	g++ -std=c++11 main.cpp Wav.o Echo.o Noisegate.o CSV.o Normalization.o -o audioprocessor
-
+	g++ -o audioprocessor Wav.o Echo.o Noisegate.o CSV.o Normalization.o main.cpp
 Wav.o: Wav.cpp Wav.h
 	g++ -c -std=c++11 Wav.cpp
 Echo.o: Echo.cpp Echo.h

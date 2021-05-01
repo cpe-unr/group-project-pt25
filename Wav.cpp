@@ -1,4 +1,10 @@
 /*
+ * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
+ * Date: May 2, 2021
+ * Assignment: Semester Project
+*/
+
+/*
  * This class is designed to work with PCM 8-bit mono wavefiles.
  * It makes many assumptions about the format of the wave as a result.
  * It will NOT work with stereo files or any other bit-depth than 8 bits.
@@ -9,8 +15,6 @@
 #include <iostream>
 #include "Wav.h"
 
-
-
 void Wav::readFile(const std::string &fileName) {
     std::ifstream file(fileName,std::ios::binary | std::ios::in);
     if(file.is_open()){
@@ -20,7 +24,6 @@ void Wav::readFile(const std::string &fileName) {
         file.close();
     }
 }
-
 
 unsigned char *Wav::getBuffer(){
     return buffer;

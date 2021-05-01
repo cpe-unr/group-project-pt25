@@ -1,9 +1,10 @@
-//
-// Created by Keith Lancaster on 3/13/21.
-//
+/*
+ * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
+ * Date: May 2, 2021
+ * Assignment: Semester Project
+*/
 
-#ifndef PROGRAMMING_ASSIGNMENT_3KL_WAV_H
-#define PROGRAMMING_ASSIGNMENT_3KL_WAV_H
+#pragma once
 
 /*
  * This class is designed to work with PCM 8-bit mono wavefiles.
@@ -26,6 +27,3 @@ public:
     unsigned char *getBuffer();
     int getBufferSize() const;
 };
-
-
-#endif //PROGRAMMING_ASSIGNMENT_3KL_WAV_H
