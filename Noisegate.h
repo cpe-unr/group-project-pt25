@@ -5,10 +5,18 @@
 class NoiseGate : public Processor
 {
 public:
-	int index = 0;
-	void processBuffer(unsigned char* buffer, int bufferSize);
 	NoiseGate();
+	void NoiseGate::processMono8Bit(int size, unsigned char* buffer);
+	NoiseGate::NoiseGate(double nAmplitude);
+	void NoiseGate::processStereo8Bit(int sizeLeft, int sizeRight, unsigned char* bufferLeft, unsigned char* bufferRight);
+	void NoiseGate::processMono8Bit(int size, unsigned char* buffer);
+	void NoiseGate::processMono16Bit(int size, short* buffer);
+	void NoiseGate::processStereo16Bit(int sizeLeft, int sizeRight, short* bufferLeft, short* bufferRight);
+	double NoiseGate::getAmp();
+	void NoiseGate::setAmp(double nAmplitude);
 	virtual ~NoiseGate();
+private:
+	double amplitude;
 };
 
 #endif //NOISEGATE_H
