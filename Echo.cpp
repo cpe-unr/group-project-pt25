@@ -16,14 +16,14 @@ void processBuffer16BitStereo(int sizeLeft, int sizeRight, unsigned char* buffer
 		if((bufferLeft[bufferIndex]) > 14090){
 		}
 		else{
-			bufferLeft[bufferIndex] = bufferLeft[bufferIndex] + bufferLeft[bufferIndex-delay];
+			bufferLeft[bufferIndex] = bufferLeft[bufferIndex] + bufferLeft[bufferIndex-Echo::delay];
 		}
 	}
 	for(int bufferIndex = 0; bufferIndex < sizeRight-1; bufferIndex++){
 		if((bufferRight[bufferIndex]) > 14090){
 		}
 		else{
-			bufferRight[bufferIndex] = bufferRight[bufferIndex] + bufferRight[bufferIndex-delay];
+			bufferRight[bufferIndex] = bufferRight[bufferIndex] + bufferRight[bufferIndex-Echo::delay];
 		}
 	}
 }
@@ -32,7 +32,7 @@ void processBuffer16Bitmono(unsigned char* buffer, int bufferSize){ //Echo proce
 		if((buffer[i]) > 14090){
 		}
 		else{
-			buffer[i] = buffer[i] + buffer[i-delay];
+			buffer[i] = buffer[i] + buffer[i-Echo::delay];
 		}
 	}
 }
@@ -42,7 +42,7 @@ void process8BitStereo(int sizeLeft, int sizeRight, unsigned char* bufferLeft, u
 		if((bufferLeft[bufferIndex]) > 110){
 		}
 		else{
-			bufferLeft[bufferIndex] = bufferLeft[bufferIndex] + bufferLeft[bufferIndex-delay];
+			bufferLeft[bufferIndex] = bufferLeft[bufferIndex] + bufferLeft[bufferIndex-Echo::delay];
 		}
 	}
 
@@ -50,7 +50,7 @@ void process8BitStereo(int sizeLeft, int sizeRight, unsigned char* bufferLeft, u
 		if((bufferRight[bufferIndex]) > 110){
 		}
 		else{
-			bufferRight[bufferIndex] = bufferRight[i] + bufferRight[i-delay];
+			bufferRight[bufferIndex] = bufferRight[bufferIndex] + bufferRight[bufferIndex-Echo::delay];
 		}
 	}
 }
@@ -59,7 +59,7 @@ void processBuffer8bitMono(unsigned char* buffer, int bufferSize){ //Echo proces
 		if((buffer[i]) > 110){
 		}
 		else{
-			buffer[i] = buffer[i] + buffer[i-delay];
+			buffer[i] = buffer[i] + buffer[i-Echo::delay];
 		}
 	}
 }
