@@ -2,8 +2,8 @@
 // Created by Keith Lancaster on 3/13/21.
 //
 
-#ifndef PROGRAMMING_ASSIGNMENT_3KL_WAVEHEADER_H
-#define PROGRAMMING_ASSIGNMENT_3KL_WAVEHEADER_H
+#ifndef WAVEHEADER_H
+#define WAVEHEADER_H
 
 // This header copied from https://gist.github.com/Jon-Schneider/8b7c53d27a7a13346a643dac9c19d34f
 /*
