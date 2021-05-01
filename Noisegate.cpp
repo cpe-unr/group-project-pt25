@@ -3,7 +3,7 @@
 #include <string>
 #include <fstream>
 #include <iostream>
-#include "NoiseGate.h"
+#include "Noisegate.h"
 
 void NoiseGate::processBuffer(unsigned char* buffer, int bufferSize)
 {

@@ -1,4 +1,4 @@
-  OUTPUT = OUTPUT + ".csv";
+  /* OUTPUT = OUTPUT + ".csv";
   std::ofstream myFile(OUTPUT);
 
   // Send data to the stream
@@ -14,3 +14,4 @@
 
   // Close the file
   myFile.close();
+*/

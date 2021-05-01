@@ -12,4 +12,3 @@ public:
 };
 
 #endif //NOISEGATE_H
-© 2021 GitHub, Inc.

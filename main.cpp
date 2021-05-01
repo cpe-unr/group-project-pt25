@@ -27,16 +27,25 @@ void fn(){
 std::string getFileName()
 {
     std::string fileName; //Name of the file without the .wav extension
-    std::cout << "Enter the File Name (without .wav extension): " << std::endl;
+    std::cout << "Enter the file name (without .wav extension)" << std::endl;
     std::cin >> fileName;
     fileName = fileName + ".wav";
     return fileName;
 }
 
+std::string setNewFileName()
+{
+	std::string newFileName;
+	std::cout << "Enter a new file name (different from original and without .wav extension)" << std::endl;;
+	std::cin >> newFileName;
+	newFileName = newFileName + ".wav";
+	return newFileName;
+}
+
 int getAmount()
 {
 	int amount = 0;
-	std::cout << "How many modifications would you like to make?: " << std::endl;
+	std::cout << "How many modifications would you like to make?" << std::endl;
 	std::cin >> amount;
 	return amount;
 }
@@ -44,13 +53,14 @@ int getAmount()
 int getChoice()
 {
 	int choice = 0;
-	std::cout << "PROCESSORS\n 1. Limiter\n 2. Echo\n 3. Noise Gate\n 4. Normalizer\n 0. End Program\n Enter your choice: " << std::endl;
+	std::cout << "PROCESSORS\n 1. Echo\n 2. Noise Gate\n 3. Normalize\n 4. Stop Modifying\n 0. End Program\n Enter your choice: " << std::endl;
 	std::cin >> choice;
 	return choice;
 }
 
 int main() {
 	std::string fileName = getFileName();
+	std::string newFileName;
 	int amount = getAmount();
 	int choice = 0;
 	for(int i = 0; i < amount; i++)
@@ -58,16 +68,17 @@ int main() {
 		choice = getChoice();
 		switch(choice) {
   			case 1:
-				//Limiter
+				std::cout << "Echo" << std::endl;
     			break;
   			case 2:
-				//Echo
+				std::cout << "Noise Gate" << std::endl;
     			break;
 			case 3:
-				//Noise Gate
+				std::cout << "Normalizer" << std::endl;
     			break;
 			case 4:
-				//Normalizer
+				std::cout << "Stopped" << std::endl;
+				i = amount;
 				break;
 			case 0:
 				return 0;
@@ -75,6 +86,13 @@ int main() {
 			  	std::cout << "Please enter a valid option!" << std::endl;
 				i--;
 			  	break;
+			}
 	}
+	do
+	{
+		newFileName = setNewFileName();
+	}
+	while(newFileName == fileName);
+
     return 0;
 }
