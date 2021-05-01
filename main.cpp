@@ -124,6 +124,7 @@ int main() {
     			break;
 			case 3:
 				std::cout << "Process File" << std::endl;
+				processorMenu();
     			break;
 			case 4:
 				std::cout << "Display File Information" << std::endl;
@@ -135,6 +136,5 @@ int main() {
 			  	break;
 			}
 	} while (menuChoice != 0);
-	processorMenu();
     return 0;
 }
