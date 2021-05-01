@@ -77,7 +77,7 @@ int getProcessorChoice()
 	return choice;
 }
 
-void processorMenu()
+void fileProcessing()
 {
 	int amount = getAmount();
 	int processorChoice = 0;
@@ -124,7 +124,7 @@ int main() {
     			break;
 			case 3:
 				std::cout << "Process File" << std::endl;
-				processorMenu();
+				fileProcessing();
     			break;
 			case 4:
 				std::cout << "Display File Information" << std::endl;
