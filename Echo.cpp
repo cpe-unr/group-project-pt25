@@ -19,7 +19,6 @@ void processBuffer16BitStereo(int sizeLeft, int sizeRight, unsigned char* buffer
 			bufferLeft[bufferIndex] = bufferLeft[bufferIndex] + bufferLeft[bufferIndex-delay];
 		}
 	}
-
 	for(int bufferIndex = 0; bufferIndex < sizeRight-1; bufferIndex++){
 		if((bufferRight[bufferIndex]) > 14090){
 		}
@@ -29,7 +28,7 @@ void processBuffer16BitStereo(int sizeLeft, int sizeRight, unsigned char* buffer
 	}
 }
 void processBuffer16Bitmono(unsigned char* buffer, int bufferSize){ //Echo processor for 16 bit mono
-	for (int index = 0; index <= bufferSize; index++){
+	for (int i = 0; i <= bufferSize; i++){
 		if((buffer[i]) > 14090){
 		}
 		else{
