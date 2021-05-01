@@ -64,7 +64,7 @@ int getAmount()
 int getMenuChoice()
 {
 	int choice = 0;
-	std::cout << "AUDIO MENU\n 1. Read File\n2. Modify Metadata\n3. Process File\n4. Display File Information\n0. End Program\n";
+	std::cout << "AUDIO MENU\n 1. Read File\n 2. Modify Metadata\n 3. Process File\n 4. Display File Information\n 0. End Program\n";
 	std::cin >> choice;
 	return choice;
 }
@@ -72,7 +72,7 @@ int getMenuChoice()
 int getProcessorChoice()
 {
 	int choice = 0;
-	std::cout << "PROCESSORS\n 1. Echo\n 2. Noise Gate\n 3. Normalize\n 4. Stop Modifying\n 0. End Program\n";
+	std::cout << "SELECT A PROCESSOR\n 1. Echo\n 2. Noise Gate\n 3. Normalize\n 4. Stop Modifying\n 0. End Program\n";
 	std::cin >> choice;
 	return choice;
 }
