@@ -3,6 +3,9 @@
 #include "Echo.h"
 #include "Wav.h"
 #include "Processor.h"
+
+using namespace std;
+
 Echo::Echo() {
 }
 Echo::Echo(int newDelay){
