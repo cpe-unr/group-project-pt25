@@ -14,7 +14,7 @@ Echo::Echo(int newDelay){
 Echo::~Echo() {
 	
 }
-void processBuffer16BitStereo(int sizeLeft, int sizeRight, unsigned char* bufferLeft, unsigned char* bufferRight){ //Echo processor for 16 bit stereo
+void Echo::processBuffer16BitStereo(int sizeLeft, int sizeRight, unsigned char* bufferLeft, unsigned char* bufferRight){ //Echo processor for 16 bit stereo
 	int cDelay = delay;
 	for(int bufferIndex = 0; bufferIndex < sizeLeft-1; bufferIndex++){
 		if((bufferLeft[bufferIndex]) > 14090){
@@ -31,7 +31,7 @@ void processBuffer16BitStereo(int sizeLeft, int sizeRight, unsigned char* buffer
 		}
 	}
 }
-void processBuffer16Bitmono(unsigned char* buffer, int bufferSize){ //Echo processor for 16 bit mono
+void Echo::processBuffer16Bitmono(unsigned char* buffer, int bufferSize){ //Echo processor for 16 bit mono
 	int cDelay = delay;
 	for (int i = 0; i <= bufferSize; i++){
 		if((buffer[i]) > 14090){
@@ -41,7 +41,7 @@ void processBuffer16Bitmono(unsigned char* buffer, int bufferSize){ //Echo proce
 		}
 	}
 }
-void process8BitStereo(int sizeLeft, int sizeRight, unsigned char* bufferLeft, unsigned char* bufferRight){ //Echo processor for 8 Bit stereo
+void Echo::process8BitStereo(int sizeLeft, int sizeRight, unsigned char* bufferLeft, unsigned char* bufferRight){ //Echo processor for 8 Bit stereo
 	int cDelay = delay;
 	for(int bufferIndex = 0; bufferIndex < sizeLeft-1; bufferIndex++){
 		if((bufferLeft[bufferIndex]) > 110){
@@ -59,7 +59,7 @@ void process8BitStereo(int sizeLeft, int sizeRight, unsigned char* bufferLeft, u
 		}
 	}
 }
-void processBuffer8bitMono(unsigned char* buffer, int bufferSize){ //Echo processor for 8 bit mono
+void Echo::processBuffer8bitMono(unsigned char* buffer, int bufferSize){ //Echo processor for 8 bit mono
 	int cDelay = delay;
 	for(int i = 0; i < bufferSize-1; i++){
 		if((buffer[i]) > 110){
