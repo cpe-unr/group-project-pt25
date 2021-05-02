@@ -7,7 +7,7 @@
 
 class Echo: public Processor {	   
 public:
-	int delay = 20000;
+	int delay;
 	void processBuffer16BitStereo(int sizeLeft, int sizeRight, unsigned char* bufferLeft, unsigned char* bufferRight);
 	void processBuffer16Bitmono(unsigned char* buffer, int bufferSize);
 	void process8BitStereo(int sizeLeft, int sizeRight, unsigned char* bufferLeft, unsigned char* bufferRight);
