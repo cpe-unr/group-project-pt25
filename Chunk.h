@@ -53,8 +53,8 @@ class FormatChunk : public ChunkInterface
 		FormatChunk(const ChunkHeader&, std::ifstream&);
 		~FormatChunk() override = default;
 		void print() override;
-		Type type() override {return Type::format;}
-		FormatData get();
+		Type type() override;
+		FormatData formatData();
 	
 	private:
 		FormatData data;
@@ -74,7 +74,7 @@ class DataChunk : public ChunkInterface
 		DataChunk(const ChunkHeader&, std::ifstream&);
 		~DataChunk() override = default;
 		void print() override;
-		Type type() override {return Type::data;}
+		Type type() override;
 		BufferData bufferData();
 
 	private:
@@ -89,7 +89,7 @@ class ListChunk : public ChunkInterface
 		ListChunk(const ChunkHeader&, std::ifstream&);
 		~ListChunk() override = default;
 		void print() override;
-		Type type() override {return Type::list;}
+		Type type() override;
 	
 	private:
 		std::vector<unsigned char> data;
@@ -103,7 +103,7 @@ class UnknownChunk : public ChunkInterface
 		UnknownChunk(const ChunkHeader&, std::ifstream&);
 		~UnknownChunk() override = default;
 		void print() override;
-		Type type() override {return Type::unknown;}
+		Type type() override;
 	
 	private:
 		std::vector<unsigned char> data;

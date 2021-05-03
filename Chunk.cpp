@@ -60,7 +60,12 @@ void FormatChunk::print()
 		<< std::endl;
 }
 
-FormatData FormatChunk::get()
+ChunkInterface::Type FormatChunk::type()
+{
+	return Type::format;
+}
+
+FormatData FormatChunk::formatData()
 {
 	return data;
 }
@@ -81,6 +86,11 @@ DataChunk::DataChunk(const ChunkHeader& header, std::ifstream& file)
 void DataChunk::print()
 {
 	std::cout << "Data Size: " << data.size() << " bytes" << std::endl;
+}
+
+ChunkInterface::Type DataChunk::type()
+{
+	return Type::data;
 }
 
 BufferData DataChunk::bufferData()
@@ -109,6 +119,11 @@ void ListChunk::print()
 	std::cout << "List Chunk: " << " Data Size: " << chunkSize() << " bytes" << " Data: " << std::string{(char*)data.data(), data.size()} << std::endl;
 }
 
+ChunkInterface::Type ListChunk::type()
+{
+	return Type::list;
+}
+
 //************************UNKOWN CHUNK
 
 UnknownChunk::UnknownChunk(const ChunkHeader& header, std::ifstream& file)
@@ -121,4 +136,9 @@ UnknownChunk::UnknownChunk(const ChunkHeader& header, std::ifstream& file)
 void UnknownChunk::print()
 {
 	std::cout << "Unkown Chunk: " << chunkName() << " Data Size: " << chunkSize() << " bytes" << std::endl;
+}
+
+ChunkInterface::Type UnknownChunk::type()
+{
+	return Type::unknown;
 }

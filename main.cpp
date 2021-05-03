@@ -119,7 +119,8 @@ int main() {
 	try
 	{
 		std::string file_name = getFileName();
-		std::vector<Wav> waves;
+		//std::vector<Wav> waves;
+		Wav wav;
 		//std::string new_file_name = setNewFileName(file_name);
 		int menuChoice = 0;
 		do
@@ -129,7 +130,8 @@ int main() {
 				case 1:
 					{
 						std::cout << "Read File" << std::endl;
-						waves.push_back(Wav{file_name});
+						//waves.push_back(Wav{file_name});
+						wav.readFile (file_name);
 					}
 					break;
 				case 2:
@@ -137,7 +139,8 @@ int main() {
 					break;
 				case 3:
 					std::cout << "Process File" << std::endl;
-					fileProcessing(waves.at(0));
+					//fileProcessing(waves.at(0));
+					fileProcessing(wav);
 					break;
 				case 4:
 					std::cout << "Display File Information" << std::endl;

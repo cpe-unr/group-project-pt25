@@ -27,7 +27,7 @@ Wav::~Wav()
 FormatData Wav::formatData()
 {
 	auto chunk = find<FormatChunk>(ChunkInterface::Type::format);
-	return chunk != nullptr ? chunk->get() : FormatData{};
+	return chunk != nullptr ? chunk->formatData() : FormatData{};
 }
 
 BufferData Wav::bufferData()

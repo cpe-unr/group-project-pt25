@@ -10,6 +10,8 @@
 #include <vector>
 #include "Chunk.h"
 
+#include <type_traits>
+
 class Wav
 {
 	public:
