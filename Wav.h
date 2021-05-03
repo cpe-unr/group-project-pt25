@@ -1,29 +1,25 @@
 /*
- * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
- * Date: May 2, 2021
- * Assignment: Semester Project
-*/
-
 #pragma once
 
-/*
- * This class is designed to work with PCM 8-bit mono wavefiles.
- * It makes many assumptions about the format of the wave as a result.
- * It will NOT work with stereo files or any other bit-depth than 8 bits.
- */
-#include "WavHeader.h"
+#include <string>
+#include <vector>
 
-class Wav {
-public:
-    void readFile(const std::string &fileName);
-    void writeFile(const std::string &outFileName);
-private:
+#include "wavheader.h"
+
+class Wav{
+protected:
+    int bufferSize_data;
     unsigned char* buffer = NULL;
-    wav_header waveHeader;
+    std::vector <SubChunkData> metadata;
+    wavHeader wave_Header;
+    dataChunk data_Chunk;
+    FMT fmt;
 public:
-    virtual ~Wav();
-
-public:
+    wavHeader getwavHeader();
     unsigned char *getBuffer();
-    int getBufferSize() const;
+    int getBufferSize();
+    void readFile(const std::string &filename);
+    void writeFile(const std::string &outFilename);
+    ~Wav();
 };
+*/

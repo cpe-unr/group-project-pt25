@@ -7,6 +7,8 @@
 /** @file */
 #include <iostream>
 
+#include "SoundFactory.h"
+
 /**
  * \brief   The function bar.
  *
@@ -27,27 +29,26 @@
  * \retval        ERR_SUCCESS    The function is successfully executed
  * \retval        ERR_FAILURE    An error occurred
  */
-void fn(){
+void fn()
+{
 
 }
+
 std::string getFileName()
 {
     std::string fileName; //Name of the file without the .wav extension
-    std::cout << "Enter the file name (without .wav extension)" << std::endl;
+    std::cout << "Enter the file name (with .wav extension)" << std::endl;
     std::cin >> fileName;
-    fileName = fileName + ".wav";
     return fileName;
 }
 
-std::string setNewFileName(std::string fileName)
+std::string setNewFileName(const std::string &fileName)
 {
 	std::string newFileName;
 	do
 	{
-		std::cout << "Enter a new file name (different from original and without .wav extension)" << std::endl;;
+		std::cout << "Enter a new file name (different from original and with .wav extension)" << std::endl;;
 		std::cin >> newFileName;
-		newFileName = newFileName + ".wav";
-		newFileName = setNewFileName(fileName);
 	}
 	while(newFileName == fileName);
 	return newFileName;
@@ -109,32 +110,42 @@ void fileProcessing()
 }
 
 int main() {
-	std::string fileName = getFileName();
-	std::string newFileName = setNewFileName(fileName);
-	int menuChoice = 0;
-	do
+	try
 	{
-		menuChoice = getMenuChoice();
-		switch(menuChoice) {
-  			case 1:
-				std::cout << "Read File" << std::endl;
-    			break;
-  			case 2:
-				std::cout << "Modify Metadata" << std::endl;
-    			break;
-			case 3:
-				std::cout << "Process File" << std::endl;
-				fileProcessing();
-    			break;
-			case 4:
-				std::cout << "Display File Information" << std::endl;
-				break;
-			case 0:
-				return 0;
-  			default:
-			  	std::cout << "Please enter a valid option!" << std::endl;
-			  	break;
-			}
-	} while (menuChoice != 0);
-    return 0;
+		std::string fileName = getFileName();
+		std::unique_ptr <SoundInterface> sound;
+		std::string newFileName = setNewFileName(fileName);
+		int menuChoice = 0;
+		do
+		{
+			menuChoice = getMenuChoice();
+			switch(menuChoice) {
+				case 1:
+					std::cout << "Read File" << std::endl;
+					sound = makeSound(fileName);
+					sound -> print();
+					break;
+				case 2:
+					std::cout << "Modify Metadata" << std::endl;
+					break;
+				case 3:
+					std::cout << "Process File" << std::endl;
+					fileProcessing();
+					break;
+				case 4:
+					std::cout << "Display File Information" << std::endl;
+					break;
+				case 0:
+					return 0;
+				default:
+					std::cout << "Please enter a valid option!" << std::endl;
+					break;
+				}
+		} while (menuChoice != 0);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	return 0;
 }
