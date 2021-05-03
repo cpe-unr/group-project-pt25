@@ -144,6 +144,7 @@ int main() {
 					break;
 				case 4:
 					std::cout << "Display File Information" << std::endl;
+					wav.print();
 					break;
 				case 0:
 					return 0;

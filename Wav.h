@@ -9,8 +9,7 @@
 #include <string>
 #include <vector>
 #include "Chunk.h"
-
-#include <type_traits>
+#include "WavHeader.h"
 
 class Wav
 {
@@ -23,9 +22,12 @@ class Wav
 		BufferData bufferData();
 		void readFile(const std::string &file_name);
 		std::string fileName();
+		void print();
+		void writeCSV();
 
 	private:
 		std::string file_name;
+		WavHeader wav_header;
 		std::vector<ChunkInterface*> chunks;
 
 		void clear();

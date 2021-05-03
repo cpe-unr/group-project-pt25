@@ -43,7 +43,6 @@ void Wav::readFile(const std::string &input_file_name)
 	file_name = input_file_name;
 	
 	//Read file data
-	WavHeader wav_header;
     std::ifstream file(file_name,std::ios::binary | std::ios::in);
 
     if(file.is_open())
@@ -65,6 +64,21 @@ void Wav::readFile(const std::string &input_file_name)
 std::string Wav::fileName()
 {
 	return file_name;
+}
+
+void Wav::print()
+{
+	std::cout << "File Name: " << file_name << std::endl;
+	std::cout << "File Size: " << wav_header.wav_size << " bytes" << std::endl;
+	for(auto chunk : chunks)
+	{
+		chunk->print();
+	}
+}
+
+void Wav::writeCSV()
+{
+	//Insert code to write CSV
 }
 
 void Wav::clear()
@@ -107,7 +121,6 @@ ChunkInterface* Wav::readChunk(std::ifstream &file)
 
 void Wav::readWavFile(std::ifstream &file)
 {
-	clear();
 	for(ChunkInterface *chunk = readChunk(file); chunk != nullptr; chunk = readChunk(file))
 	{	
 		chunks.push_back(chunk);
