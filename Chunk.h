@@ -32,6 +32,7 @@ class ChunkInterface
 		virtual Type type() = 0;
 		virtual void write(std::ofstream &file);
 		virtual std::uint32_t writeSize();
+		virtual void writeCSV(std::ofstream &file) = 0;
 
 	protected:
 		ChunkHeader chunk_header;
@@ -58,6 +59,7 @@ class FormatChunk : public ChunkInterface
 		Type type() override;
 		void write(std::ofstream &file) override;
 		std::uint32_t writeSize() override;
+		void writeCSV(std::ofstream &file) override;
 		FormatData formatData();
 	
 	private:
@@ -81,6 +83,7 @@ class DataChunk : public ChunkInterface
 		Type type() override;
 		void write(std::ofstream &file) override;
 		std::uint32_t writeSize() override;
+		void writeCSV(std::ofstream &file) override;
 		BufferData bufferData();
 
 	private:
@@ -98,6 +101,7 @@ class ListChunk : public ChunkInterface
 		Type type() override;
 		void write(std::ofstream &file) override;
 		std::uint32_t writeSize() override;
+		void writeCSV(std::ofstream &file) override;
 	
 	private:
 		std::vector<unsigned char> data;
@@ -114,6 +118,7 @@ class UnknownChunk : public ChunkInterface
 		Type type() override;
 		void write(std::ofstream &file) override;
 		std::uint32_t writeSize() override;
+		void writeCSV(std::ofstream &file) override;
 	
 	private:
 		std::vector<unsigned char> data;

@@ -24,7 +24,7 @@ class Wav
 		void saveAs(const std::string &file_name);
 		std::string fileName();
 		void print();
-		void writeCSV();
+		void appendCSV(const std::string &csv_file_name);
 
 	private:
 		std::string file_name;
@@ -39,7 +39,8 @@ class Wav
 };
 
 //Convenience function to find specific wave chunk data
-template<typename C> C* Wav::find(ChunkInterface::Type type)
+template<typename C>
+C* Wav::find(ChunkInterface::Type type)
 {
 	for(auto chunk : chunks)
 	{

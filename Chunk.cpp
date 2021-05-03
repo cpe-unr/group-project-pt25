@@ -86,6 +86,16 @@ std::uint32_t FormatChunk::writeSize()
 	return ChunkInterface::writeSize() + sizeof(FormatData);
 }
 
+void FormatChunk::writeCSV(std::ofstream &file)
+{
+	file << data.audio_format << ','
+		<< data.num_channels << ','
+		<< data.sample_rate << ','
+		<< data.byte_rate << ','
+		<< data.sample_alignment << ','
+		<< data.bit_depth;
+}
+
 FormatData FormatChunk::formatData()
 {
 	return data;
@@ -124,6 +134,9 @@ std::uint32_t DataChunk::writeSize()
 {
 	return ChunkInterface::writeSize() + data.size();
 }
+
+void DataChunk::writeCSV(std::ofstream &)
+{}
 
 BufferData DataChunk::bufferData()
 {
@@ -167,6 +180,11 @@ std::uint32_t ListChunk::writeSize()
 	return ChunkInterface::writeSize() + data.size();
 }
 
+void ListChunk::writeCSV(std::ofstream &file)
+{
+	file << "List";
+}
+
 //************************UNKOWN CHUNK
 
 UnknownChunk::UnknownChunk(const ChunkHeader& header, std::ifstream& file)
@@ -196,3 +214,6 @@ std::uint32_t UnknownChunk::writeSize()
 {
 	return ChunkInterface::writeSize() + data.size();
 }
+
+void UnknownChunk::writeCSV(std::ofstream &)
+{}

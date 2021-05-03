@@ -140,8 +140,9 @@ int main() {
 					break;
 				case 4:
 					{
-					std::cout << "Display File Information" << std::endl;
-					wav.print();
+						std::cout << "Display File Information" << std::endl;
+						wav.print();
+						wav.appendCSV("test.csv");
 					}
 					break;
 				case 0:

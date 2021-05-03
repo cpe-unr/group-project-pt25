@@ -108,9 +108,46 @@ void Wav::print()
 	}
 }
 
-void Wav::writeCSV()
+void Wav::appendCSV(const std::string &csv_file_name)
 {
-	//Insert code to write CSV
+	if(file_name != csv_file_name)
+	{
+		std::ofstream file(csv_file_name, std::ios::app);
+
+		if(file.is_open())
+		{
+			auto format_chunk = find<FormatChunk>(ChunkInterface::Type::format);
+			if(format_chunk != nullptr)
+			{
+				format_chunk->writeCSV(file);
+				file << ',';
+			}
+			else
+			{
+				throw std::runtime_error("Missing format data");
+			}
+
+			auto list_chunk = find<ListChunk>(ChunkInterface::Type::list);
+			if(list_chunk != nullptr)
+			{
+				list_chunk->writeCSV(file);
+			}
+			else
+			{
+				file << "No metadata";
+			}
+			file << std::endl;
+			file.close();
+		}
+		else
+		{
+			throw std::runtime_error("Could not write to file");
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Can't overwrite source file");
+	}
 }
 
 void Wav::clear()
