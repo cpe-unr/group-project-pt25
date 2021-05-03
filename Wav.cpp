@@ -59,6 +59,38 @@ void Wav::readFile(const std::string &input_file_name)
 		readWavFile(file);
         file.close();
     }
+	else
+	{
+		throw std::runtime_error("Could not read file");
+	}
+}
+
+void Wav::saveAs(const std::string &new_file_name)
+{
+	if(file_name != new_file_name)
+	{
+		std::ofstream file(new_file_name,std::ios::binary | std::ios::out);
+
+		if(file.is_open())
+		{
+			wav_header.wav_size = writeSize();
+			file.write((char*)&wav_header, sizeof(wav_header));
+			for(auto chunk : chunks)
+			{
+				chunk->write(file);
+			}
+			std::cout << "New Size: " << wav_header.wav_size << std::endl;
+			file.close();
+		}
+		else
+		{
+			throw std::runtime_error("Could not write to file");
+		}
+	}
+	else
+	{
+		throw std::runtime_error("Can't overwrite source file");
+	}
 }
 
 std::string Wav::fileName()
@@ -126,4 +158,14 @@ void Wav::readWavFile(std::ifstream &file)
 		chunks.push_back(chunk);
 		chunk->print();
 	}
+}
+
+std::uint32_t Wav::writeSize()
+{
+	std::size_t result = sizeof(WavHeader) - 8;
+	for(auto chunk : chunks)
+	{
+		result += chunk->writeSize();
+	}
+	return result;
 }

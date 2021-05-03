@@ -30,6 +30,8 @@ class ChunkInterface
 		std::size_t chunkSize();
 		virtual void print() = 0;
 		virtual Type type() = 0;
+		virtual void write(std::ofstream &file);
+		virtual std::uint32_t writeSize();
 
 	protected:
 		ChunkHeader chunk_header;
@@ -54,6 +56,8 @@ class FormatChunk : public ChunkInterface
 		~FormatChunk() override = default;
 		void print() override;
 		Type type() override;
+		void write(std::ofstream &file) override;
+		std::uint32_t writeSize() override;
 		FormatData formatData();
 	
 	private:
@@ -75,6 +79,8 @@ class DataChunk : public ChunkInterface
 		~DataChunk() override = default;
 		void print() override;
 		Type type() override;
+		void write(std::ofstream &file) override;
+		std::uint32_t writeSize() override;
 		BufferData bufferData();
 
 	private:
@@ -90,6 +96,8 @@ class ListChunk : public ChunkInterface
 		~ListChunk() override = default;
 		void print() override;
 		Type type() override;
+		void write(std::ofstream &file) override;
+		std::uint32_t writeSize() override;
 	
 	private:
 		std::vector<unsigned char> data;
@@ -104,6 +112,8 @@ class UnknownChunk : public ChunkInterface
 		~UnknownChunk() override = default;
 		void print() override;
 		Type type() override;
+		void write(std::ofstream &file) override;
+		std::uint32_t writeSize() override;
 	
 	private:
 		std::vector<unsigned char> data;

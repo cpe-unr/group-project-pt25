@@ -69,7 +69,7 @@ int getMenuChoice()
 int getProcessorChoice()
 {
 	int choice = 0;
-	std::cout << "SELECT A PROCESSOR\n 1. Echo\n 2. Noise Gate\n 3. Normalize\n 4. Stop Modifying\n 0. End Program\n";
+	std::cout << "SELECT A PROCESSOR\n 1. Echo\n 2. Noise Gate\n 3. Normalize\n 0. Stop Modifying\n";
 	std::cin >> choice;
 	return choice;
 }
@@ -97,19 +97,18 @@ void fileProcessing(Wav &wav, const std::string &file_name)
 			case 3:
 				std::cout << "Normalizer" << std::endl;
     			break;
-			case 4:
+			case 0:
 				std::cout << "Stopped" << std::endl;
 				i = amount;
 				break;
-			case 0:
-				exit;
   			default:
 			  	std::cout << "Please enter a valid option!" << std::endl;
 				i--;
 			  	break;
 			}
 	}
-	setNewFileName(file_name);
+	std::string new_file_name = setNewFileName(file_name);
+	wav.saveAs(new_file_name);
 }
 
 int main() {
@@ -140,8 +139,10 @@ int main() {
 					fileProcessing(wav, file_name);
 					break;
 				case 4:
+					{
 					std::cout << "Display File Information" << std::endl;
 					wav.print();
+					}
 					break;
 				case 0:
 					return 0;

@@ -32,9 +32,19 @@ std::size_t ChunkInterface::chunkSize()
 	return chunk_header.chunk_size;
 }
 
+void ChunkInterface::write(std::ofstream &file)
+{
+	file.write((char*)&chunk_header, sizeof(chunk_header));
+}
+
 void ChunkInterface::print()
 {
 	std::cout << "ID: " << chunkName() << " Size: " << chunk_header.chunk_size << std::endl;
+}
+
+std::uint32_t ChunkInterface::writeSize()
+{
+	return sizeof(ChunkHeader);
 }
 
 //************************FORMAT CHUNK
@@ -65,6 +75,17 @@ ChunkInterface::Type FormatChunk::type()
 	return Type::format;
 }
 
+void FormatChunk::write(std::ofstream &file)
+{
+	ChunkInterface::write(file);
+	file.write((char*)&data, sizeof(data));
+}
+
+std::uint32_t FormatChunk::writeSize()
+{
+	return ChunkInterface::writeSize() + sizeof(FormatData);
+}
+
 FormatData FormatChunk::formatData()
 {
 	return data;
@@ -91,6 +112,17 @@ void DataChunk::print()
 ChunkInterface::Type DataChunk::type()
 {
 	return Type::data;
+}
+
+void DataChunk::write(std::ofstream &file)
+{
+	ChunkInterface::write(file);
+	file.write((char*)data.data(), data.size());
+}
+
+std::uint32_t DataChunk::writeSize()
+{
+	return ChunkInterface::writeSize() + data.size();
 }
 
 BufferData DataChunk::bufferData()
@@ -124,6 +156,17 @@ ChunkInterface::Type ListChunk::type()
 	return Type::list;
 }
 
+void ListChunk::write(std::ofstream &file)
+{
+	ChunkInterface::write(file);
+	file.write((char*)data.data(), data.size());
+}
+
+std::uint32_t ListChunk::writeSize()
+{
+	return ChunkInterface::writeSize() + data.size();
+}
+
 //************************UNKOWN CHUNK
 
 UnknownChunk::UnknownChunk(const ChunkHeader& header, std::ifstream& file)
@@ -141,4 +184,15 @@ void UnknownChunk::print()
 ChunkInterface::Type UnknownChunk::type()
 {
 	return Type::unknown;
+}
+
+void UnknownChunk::write(std::ofstream &file)
+{
+	ChunkInterface::write(file);
+	file.write((char*)data.data(), data.size());
+}
+
+std::uint32_t UnknownChunk::writeSize()
+{
+	return ChunkInterface::writeSize() + data.size();
 }

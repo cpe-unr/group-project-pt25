@@ -21,6 +21,7 @@ class Wav
 		FormatData formatData();
 		BufferData bufferData();
 		void readFile(const std::string &file_name);
+		void saveAs(const std::string &file_name);
 		std::string fileName();
 		void print();
 		void writeCSV();
@@ -34,6 +35,7 @@ class Wav
 		template<typename C> C* find(ChunkInterface::Type type);
 		ChunkInterface* readChunk(std::ifstream &file);
 		void readWavFile(std::ifstream &file);
+		std::uint32_t writeSize();
 };
 
 //Convenience function to find specific wave chunk data
