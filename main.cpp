@@ -4,12 +4,12 @@
  * Assignment: Semester Project
 */
 
-/** @file */
-#include <iostream>
+/* @file */
 
+#include <iostream>
 #include "Wav.h"
 
-/**
+/*
  * \brief   The function bar.
  *
  * \details This function does something which is doing nothing. So this text
@@ -29,10 +29,6 @@
  * \retval        ERR_SUCCESS    The function is successfully executed
  * \retval        ERR_FAILURE    An error occurred
  */
-void fn()
-{
-
-}
 
 std::string getFileName()
 {
@@ -78,7 +74,7 @@ int getProcessorChoice()
 	return choice;
 }
 
-void fileProcessing(Wav &wav)
+void fileProcessing(Wav &wav, const std::string &file_name)
 {
 	int amount = getAmount();
 	int processorChoice = 0;
@@ -113,6 +109,7 @@ void fileProcessing(Wav &wav)
 			  	break;
 			}
 	}
+	setNewFileName(file_name);
 }
 
 int main() {
@@ -140,7 +137,7 @@ int main() {
 				case 3:
 					std::cout << "Process File" << std::endl;
 					//fileProcessing(waves.at(0));
-					fileProcessing(wav);
+					fileProcessing(wav, file_name);
 					break;
 				case 4:
 					std::cout << "Display File Information" << std::endl;
