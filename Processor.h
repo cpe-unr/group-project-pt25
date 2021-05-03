@@ -5,5 +5,9 @@
 
 class Processor {
 public:
-    virtual void processBuffer(unsigned char* buffer, int bufferSize) = 0;
+    virtual void processBuffer16Stereo(int bufferSizeL, int bufferSizeR, short* bufferL, short* bufferR) = 0;
+    virtual void processBuffer16Mono( int bufferSize, short* buffer) = 0;
+    virtual void processBuffer8Stereo(int bufferSizeL, int bufferSizeR, unsigned char* bufferL, unsigned char* bufferR) = 0;
+    virtual void processBuffer8Mono(int bufferSize, unsigned char* buffer) = 0;
 };
+
