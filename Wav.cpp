@@ -1,92 +1,116 @@
 /*
-#include <iostream>
-#include <string>
-#include <fstream>
-
-#include "wav.h"
-
-wavHeader Wav::getwavHeader(){
-    return wave_Header;
-}
-
-unsigned char *Wav::getBuffer(){
-    return buffer;
-}
-
-void Wav::readFile(const std::string &fileName){
-    std::ifstream file(fileName, std::ios::binary | std::ios::in);
-    
-    if(file.is_open()){
-        file.read((char*)&wave_Header, sizeof(wavHeader));
-        while(file){
-            file.read((char*)&data_Chunk, sizeof(dataChunk));
-            
-            std::string header_word = data_Chunk.fmt_header;
-            int chunkSize = data_Chunk.fmt_chunk_size;
-            
-            //Format Chunk
-            if(header_word == "FMT "){
-                file.read((char*)&fmt, sizeof(FMT));
-            }
-            //Metadata Chunk
-            else if(header_word == "LIST"){
-                int counter = 0;
-                char garbage[4];
-                file.read(garbage, 4);
-                while(counter < chunkSize){
-                    SubChunkData subchunk;
-                    file.read((char*)&subchunk, sizeof(dataChunk));
-                    subchunk.buffer = new char [subchunk.fmt_chunk_size];
-                    metadata.push_back(subchunk);
-                    counter += (sizeof(dataChunk) + subchunk.fmt_chunk_size);
-                }
-            }
-            //Data Chunk
-            else if(header_word == "DATA"){
-                bufferSize_data = chunkSize;
-                buffer = new unsigned char [chunkSize];
-                file.read((char*)&buffer, chunkSize);
-            }else{
-                //*seekg: allows you to seek to an arbitrary position in a file, it is used in file handling to sets the position of the next character to be extracted from the input stream from a given file.
-                file.seekg(chunkSize, std::ios::cur);
-            }
-        }
-    }
-    file.close();
-}
-
-void Wav::writeFile(const std::string &outFilename){
-    std::ofstream outFile(outFilename, std::ios::out | std::ios::binary);
-    outFile.write((char*)&wave_Header, sizeof(wavHeader));
-    
-    //Format Chunk
-    outFile.write("fmt ", 4);
-    int size = sizeof(fmt);
-    outFile.write((char*)&size, sizeof(size));
-    outFile.write((char*)&fmt, sizeof(FMT));
-    
-    //Metadata Chunk
-    outFile.write("LIST", 4);
-    size = 4;
-    for(SubChunkData s: metadata){
-        size += (sizeof(dataChunk) + s.fmt_chunk_size);
-    }
-    outFile.write((char*)&size, sizeof(size));
-    outFile.write("INFO", 4);
-    for(SubChunkData s: metadata){
-        outFile.write((char*)&s, sizeof(dataChunk));
-        outFile.write((char*)&s.buffer, sizeof(s.fmt_chunk_size));
-    }
-    
-    //Data Chunk
-    outFile.write("DATA", 4);
-    outFile.write((char*)&bufferSize_data, sizeof(bufferSize_data));
-    outFile.write((char*)&buffer, bufferSize_data);
-}
-
-Wav::~Wav(){
-    if(buffer != NULL){
-        delete[] buffer;
-    }
-}
+ * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
+ * Date: May 2, 2021
+ * Assignment: Semester Project
 */
+
+#include <iostream>
+#include <exception>
+#include <fstream>
+#include "Wav.h"
+#include "WavHeader.h"
+
+Wav::Wav()
+{}
+
+Wav::Wav(const std::string &file_name)
+: file_name(file_name)
+{
+	readFile(file_name);
+}
+
+Wav::~Wav()
+{
+	clear();
+}
+
+FormatData Wav::formatData()
+{
+	auto chunk = find<FormatChunk>(ChunkInterface::Type::format);
+	return chunk != nullptr ? chunk->get() : FormatData{};
+}
+
+BufferData Wav::bufferData()
+{
+	auto chunk = find<DataChunk>(ChunkInterface::Type::data);
+	return chunk != nullptr ? chunk->bufferData() : BufferData{};
+}
+
+void Wav::readFile(const std::string &input_file_name)
+{
+	//Clean up in case readFile() has already been called
+	clear();
+	file_name = input_file_name;
+	
+	//Read file data
+	WavHeader wav_header;
+    std::ifstream file(file_name,std::ios::binary | std::ios::in);
+
+    if(file.is_open())
+	{
+        file.read((char*)&wav_header, sizeof(wav_header));
+		if(std::string {wav_header.riff_header, 4} != "RIFF")
+		{
+			throw std::runtime_error("Not RIFF Format");
+		}
+		if(std::string {wav_header.wave_header, 4} != "WAVE")
+		{
+			throw std::runtime_error("Not WAVE Format");
+		}
+		readWavFile(file);
+        file.close();
+    }
+}
+
+std::string Wav::fileName()
+{
+	return file_name;
+}
+
+void Wav::clear()
+{
+	for(auto chunk : chunks)
+	{
+		delete chunk;
+	}
+	chunks.clear();
+	file_name.clear();
+}
+
+ChunkInterface* Wav::readChunk(std::ifstream &file)
+{
+	// Create the correct chunk type
+	ChunkHeader chunk_header;
+	file.read(reinterpret_cast<char*>(&chunk_header), sizeof(chunk_header));
+	if(!file.eof())
+	{
+		if (chunk_header.chunkName() == "fmt ")
+		{
+			return new FormatChunk(chunk_header, file);
+		}
+		else if (chunk_header.chunkName() == "data")
+		{
+			return new DataChunk (chunk_header, file);
+		}
+		else if (chunk_header.chunkName() == "LIST")
+		{
+			return new ListChunk (chunk_header, file);
+		}
+		else
+		{
+			// The chunk is not recognized
+			return new UnknownChunk (chunk_header, file);
+		}
+	}
+	return nullptr;
+}
+
+void Wav::readWavFile(std::ifstream &file)
+{
+	clear();
+	for(ChunkInterface *chunk = readChunk(file); chunk != nullptr; chunk = readChunk(file))
+	{	
+		chunks.push_back(chunk);
+		chunk->print();
+	}
+}

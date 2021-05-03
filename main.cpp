@@ -7,7 +7,7 @@
 /** @file */
 #include <iostream>
 
-#include "SoundFactory.h"
+#include "Wav.h"
 
 /**
  * \brief   The function bar.
@@ -36,22 +36,22 @@ void fn()
 
 std::string getFileName()
 {
-    std::string fileName; //Name of the file without the .wav extension
+    std::string file_name; //Name of the file without the .wav extension
     std::cout << "Enter the file name (with .wav extension)" << std::endl;
-    std::cin >> fileName;
-    return fileName;
+    std::cin >> file_name;
+    return file_name;
 }
 
-std::string setNewFileName(const std::string &fileName)
+std::string setNewFileName(const std::string &file_name)
 {
-	std::string newFileName;
+	std::string new_file_name;
 	do
 	{
 		std::cout << "Enter a new file name (different from original and with .wav extension)" << std::endl;;
-		std::cin >> newFileName;
+		std::cin >> new_file_name;
 	}
-	while(newFileName == fileName);
-	return newFileName;
+	while(new_file_name == file_name);
+	return new_file_name;
 }
 
 int getAmount()
@@ -78,16 +78,22 @@ int getProcessorChoice()
 	return choice;
 }
 
-void fileProcessing()
+void fileProcessing(Wav &wav)
 {
 	int amount = getAmount();
 	int processorChoice = 0;
+	auto format_data = wav.formatData();
+	auto buffer_data = wav.bufferData();
 	for(int i = 0; i < amount; i++)
 	{
 		processorChoice = getProcessorChoice();
 		switch(processorChoice) {
   			case 1:
 				std::cout << "Echo" << std::endl;
+				//Processor *processor = new Limiter();
+        		//processor->processBuffer(format_data, buffer_data.buffer, buffer_data.size);
+        		//wav.writeFile("limit.wav");
+        		//delete processor;
     			break;
   			case 2:
 				std::cout << "Noise Gate" << std::endl;
@@ -112,25 +118,26 @@ void fileProcessing()
 int main() {
 	try
 	{
-		std::string fileName = getFileName();
-		std::unique_ptr <SoundInterface> sound;
-		std::string newFileName = setNewFileName(fileName);
+		std::string file_name = getFileName();
+		std::vector<Wav> waves;
+		//std::string new_file_name = setNewFileName(file_name);
 		int menuChoice = 0;
 		do
 		{
 			menuChoice = getMenuChoice();
 			switch(menuChoice) {
 				case 1:
-					std::cout << "Read File" << std::endl;
-					sound = makeSound(fileName);
-					sound -> print();
+					{
+						std::cout << "Read File" << std::endl;
+						waves.push_back(Wav{file_name});
+					}
 					break;
 				case 2:
 					std::cout << "Modify Metadata" << std::endl;
 					break;
 				case 3:
 					std::cout << "Process File" << std::endl;
-					fileProcessing();
+					fileProcessing(waves.at(0));
 					break;
 				case 4:
 					std::cout << "Display File Information" << std::endl;

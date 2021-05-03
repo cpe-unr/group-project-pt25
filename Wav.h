@@ -1,25 +1,46 @@
 /*
+ * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
+ * Date: May 2, 2021
+ * Assignment: Semester Project
+*/
+
 #pragma once
 
 #include <string>
 #include <vector>
+#include "Chunk.h"
 
-#include "wavheader.h"
+class Wav
+{
+	public:
+		Wav();
+		Wav(const std::string &file_name);
+		~Wav();
 
-class Wav{
-protected:
-    int bufferSize_data;
-    unsigned char* buffer = NULL;
-    std::vector <SubChunkData> metadata;
-    wavHeader wave_Header;
-    dataChunk data_Chunk;
-    FMT fmt;
-public:
-    wavHeader getwavHeader();
-    unsigned char *getBuffer();
-    int getBufferSize();
-    void readFile(const std::string &filename);
-    void writeFile(const std::string &outFilename);
-    ~Wav();
+		FormatData formatData();
+		BufferData bufferData();
+		void readFile(const std::string &file_name);
+		std::string fileName();
+
+	private:
+		std::string file_name;
+		std::vector<ChunkInterface*> chunks;
+
+		void clear();
+		template<typename C> C* find(ChunkInterface::Type type);
+		ChunkInterface* readChunk(std::ifstream &file);
+		void readWavFile(std::ifstream &file);
 };
-*/
+
+//Convenience function to find specific wave chunk data
+template<typename C> C* Wav::find(ChunkInterface::Type type)
+{
+	for(auto chunk : chunks)
+	{
+		if(chunk->type() == type)
+		{
+			return reinterpret_cast<C*>(chunk);
+		}
+	}
+	return nullptr;
+}
