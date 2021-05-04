@@ -29,27 +29,38 @@ void Echo::processBufferEight(FormatData& format_data, unsigned char* buffer, in
 	if(format_data.num_channels == 2)
 	{
 		//Echo processor for 8 Bit stereo
-		/*
-		int cDelay = delay;
-	for(int bufferIndex = 0; bufferIndex < sizeLeft-1; bufferIndex++){
-		if((bufferLeft[bufferIndex]) > 110){
-		}
-		else{
-			bufferLeft[bufferIndex] = bufferLeft[bufferIndex] + bufferLeft[bufferIndex-cDelay];
-		}
-	}
-
-	for(int bufferIndex = 0; bufferIndex < sizeRight-1; bufferIndex++){
-		if((bufferRight[bufferIndex]) > 110){
-		}
-		else{
-			bufferRight[bufferIndex] = bufferRight[bufferIndex] + bufferRight[bufferIndex-cDelay];
-		}
-	} */
-	}
-		else if(format_data.num_channels == 1)
+		int i, j;
+		int halfBufferSize = bufferSize / 2;
+		unsigned char* bufferL;
+		unsigned char* bufferR;
+		for(i = 0, j = 0; j < bufferSize; i ++, j += 2)
 		{
-			//Echo processor for 8 bit mono
+			bufferL[i] = buffer[j];
+			bufferR[i] = buffer[j + 1];
+		}
+		for(int i = 0; i < halfBufferSize; i++)
+		{
+			if(i > delay)
+			{
+				bufferL[i] = (bufferL[i] * 0.7f) + ((bufferL[i - delay]) * 0.3f);
+			}
+		}
+		for(int i = 0; i < halfBufferSize; i++)
+		{
+			if(i > delay)
+			{
+				bufferR[i] = (bufferR[i] * 0.7f) + ((bufferR[i - delay]) * 0.3f);
+			}
+		}
+		for(i=0, j=0; j < bufferSize; i++, j += 2)
+		{
+			buffer[j] = bufferL[i];
+			buffer[j + 1] = bufferR[i];
+		}
+	}
+	else if(format_data.num_channels == 1)
+	{
+		//Echo processor for 8 bit mono
 		for(int i = 0; i < bufferSize; i++)
 		{
 			if(i > delay)
@@ -64,7 +75,7 @@ void Echo::processBufferEight(FormatData& format_data, unsigned char* buffer, in
 	}
 }	
 
-void Echo::processBufferSixteen(FormatData& format_data, Short* buffer, int bufferSize)
+void Echo::processBufferSixteen(FormatData& format_data, short* buffer, int bufferSize)
 {
 	if(format_data.num_channels == 2)
 	{
@@ -102,7 +113,6 @@ void Echo::processBufferSixteen(FormatData& format_data, Short* buffer, int buff
 		std::cout << "Improper number of audio channels" << std::endl;
 	}
 }
-
 
 void Echo::setDelay(int newDelay)
 {
