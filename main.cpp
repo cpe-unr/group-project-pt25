@@ -88,7 +88,6 @@ void fileProcessing(Wav &wav, const std::string &file_name)
 				std::cout << "Echo" << std::endl;
 				//Processor *processor = new Limiter();
         		//processor->processBuffer(format_data, buffer_data.buffer, buffer_data.size);
-        		//wav.writeFile("limit.wav");
         		//delete processor;
     			break;
   			case 2:
