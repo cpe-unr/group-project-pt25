@@ -153,15 +153,54 @@ ListChunk::ListChunk(const ChunkHeader& header, std::ifstream& file)
 {
 	if(chunkName() != "LIST")
 	{
-		throw std::runtime_error("Not List Chunk");
+		throw std::runtime_error("No List Chunk");
 	}
-	data.resize(chunkSize());
-	file.read((char*)data.data(), data.size());
+	int counter = chunkSize();
+	std::cout << counter << std::endl;
+	if(counter > 4)
+	{
+		//Create a string buffer to read INFO header
+		std::string info;
+		info.resize(4);
+		file.read((char*)info.data(), info.size());
+		if(info != "INFO")
+		{
+			throw std::runtime_error("No Metadata Found");
+		}
+		counter -= 4;
+		while(counter > sizeof(ChunkHeader))
+		{
+			//Read the subchunk header
+			ChunkHeader sub_chunk_header;
+			file.read((char*)&sub_chunk_header, sizeof(sub_chunk_header));
+			counter -= sizeof(sub_chunk_header);
+			//Read the metadata from the file and add to subchunk array
+			if(counter >= sub_chunk_header.chunk_size)
+			{
+				std::string metadata_id {sub_chunk_header.chunk_id, sizeof(sub_chunk_header.chunk_id)};
+				std::string metadata;
+				metadata.resize(sub_chunk_header.chunk_size);
+				file.read((char*)metadata.data(), metadata.size());
+				counter -= metadata.size();
+				//Save the subchunk data
+				subchunks.push_back(SubChunk {metadata_id, metadata});
+			}
+			else
+			{
+				//Failsafe if the data is incorrect
+				counter = 0;
+			}
+		}
+	}
 }
 
 void ListChunk::print()
 {
-	std::cout << "List Chunk: " << " Data Size: " << chunkSize() << " bytes" << " Data: " << std::string{(char*)data.data(), data.size()} << std::endl;
+	std::cout << "List Chunk: " << " Data Size: " << chunkSize() << " bytes" << std::endl;
+	for(auto &subchunk : subchunks)
+	{
+		std::cout <<  "ID: " << subchunk.metadata_id << " Data: " << subchunk.metadata << std::endl;
+	}
 }
 
 ChunkInterface::Type ListChunk::type()
@@ -172,17 +211,41 @@ ChunkInterface::Type ListChunk::type()
 void ListChunk::write(std::ofstream &file)
 {
 	ChunkInterface::write(file);
-	file.write((char*)data.data(), data.size());
+	file.write("INFO", 4);
+	for(auto &subchunk : subchunks)
+	{
+		file.write(subchunk.metadata_id.data(), subchunk.metadata_id.size());
+		std::uint32_t size = subchunk.metadata.size();
+		file.write((char*)&size, sizeof(uint32_t));
+		file.write(subchunk.metadata.data(), subchunk.metadata.size());
+	}
+}
+
+std::uint32_t ListChunk::writeSubchunkSize()
+{
+	//Count the size of the subchunks
+	std::uint32_t result = 0;
+	for(auto &subchunk : subchunks)
+	{
+		//Size of the subchunk header plus the metadata
+		result += sizeof(ChunkHeader) + subchunk.metadata.size();
+	}
+	return result;
 }
 
 std::uint32_t ListChunk::writeSize()
 {
-	return ChunkInterface::writeSize() + data.size();
+	//Set the initial size to the chunk header size plus the tag "INFO"
+	std::uint32_t result = ChunkInterface::writeSize() + 4 + writeSubchunkSize();
+	return result;
 }
 
 void ListChunk::writeCSV(std::ofstream &file)
 {
-	file << "List";
+	for(auto &subchunk : subchunks)
+	{
+		file << subchunk.metadata << ' ';
+	}
 }
 
 //************************UNKOWN CHUNK

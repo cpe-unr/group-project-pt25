@@ -92,6 +92,12 @@ class DataChunk : public ChunkInterface
 
 //************************LIST CHUNK
 
+struct SubChunk
+{
+	std::string metadata_id;
+	std::string metadata;
+};
+
 class ListChunk : public ChunkInterface
 {
 	public:
@@ -100,11 +106,12 @@ class ListChunk : public ChunkInterface
 		void print() override;
 		Type type() override;
 		void write(std::ofstream &file) override;
+		std::uint32_t writeSubchunkSize();
 		std::uint32_t writeSize() override;
 		void writeCSV(std::ofstream &file) override;
 	
 	private:
-		std::vector<unsigned char> data;
+		std::vector<SubChunk> subchunks;
 };
 
 //************************UNKNOWN CHUNK
