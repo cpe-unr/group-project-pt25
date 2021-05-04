@@ -86,7 +86,7 @@ void fileProcessing(Wav &wav, const std::string &file_name)
 		switch(processorChoice) {
   			case 1:
   				{
-					Processor *processor = new Echo(10000);
+					Processor *processor = new Echo(20000);
 	        		processor->processBuffer(format_data, buffer_data.buffer, buffer_data.size);
 	        		delete processor;
         		}
