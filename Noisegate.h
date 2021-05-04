@@ -1,18 +1,25 @@
-#ifndef NOISEGATE_H
-#define NOISEGATE_H
+/*
+ * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
+ * Date: May 2, 2021
+ * Assignment: Semester Project
+*/
+
+#pragma once
+
+#include <cstdint>
+#include <cmath>
 #include"Processor.h"
+
 
 class NoiseGate : public Processor
 {
 public:
 	NoiseGate();
-	NoiseGate::NoiseGate(double nAmplitude);
-	void processBuffer(FormatData&, unsigned char* buffer, int bufferSize);
-	double NoiseGate::getAmp();
-	void NoiseGate::setAmp(double nAmplitude);
+	NoiseGate(double amplitude);
+	void processBuffer(FormatData& format_data, unsigned char* buffer, int bufferSize);
+	double getAmp();
+	void setAmp(double amplitude);
 	virtual ~NoiseGate();
 private:
 	double amplitude;
 };
-
-#endif //NOISEGATE_H

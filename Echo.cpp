@@ -1,3 +1,8 @@
+/*
+ * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
+ * Date: May 2, 2021
+ * Assignment: Semester Project
+*/
 
 #include <string>
 #include <iostream>
@@ -19,7 +24,7 @@ Echo::~Echo()
 	
 }
 
-void Echo::processBuffer(FormatData&, unsigned char* buffer, int bufferSize)
+void Echo::processBuffer(FormatData& format_data, unsigned char* buffer, int bufferSize)
 {
  
  

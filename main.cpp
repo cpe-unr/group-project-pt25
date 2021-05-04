@@ -7,6 +7,7 @@
 /* @file */
 
 #include <iostream>
+#include "Echo.h"
 #include "Wav.h"
 
 /*
@@ -84,10 +85,12 @@ void fileProcessing(Wav &wav, const std::string &file_name)
 		processorChoice = getProcessorChoice();
 		switch(processorChoice) {
   			case 1:
-				std::cout << "Echo" << std::endl;
-				//Processor *processor = new Limiter();
-        		//processor->processBuffer(format_data, buffer_data.buffer, buffer_data.size);
-        		//delete processor;
+  				{
+					std::cout << "Echo" << std::endl;
+					Processor *processor = new Echo(10000);
+	        		processor->processBuffer(format_data, buffer_data.buffer, buffer_data.size);
+	        		delete processor;
+        		}
     			break;
   			case 2:
 				std::cout << "Noise Gate" << std::endl;
