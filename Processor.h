@@ -12,5 +12,6 @@
 
 class Processor {
 public:
-    virtual void processBuffer(FormatData&, unsigned char* buffer, int bufferSize) = 0;
+    virtual void processBufferEight(FormatData&, unsigned char* buffer, int bufferSize) = 0;
+    virtual void processBufferSixteen(FormatData&, short* buffer, int bufferSize) = 0;
 };
