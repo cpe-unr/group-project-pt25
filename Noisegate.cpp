@@ -45,17 +45,25 @@ void NoiseGate::processBufferEight(FormatData& format_data, unsigned char* buffe
 		}
 		for(int i = 0; i < halfBufferSize; i++)
 		{
-			if(bufferL[i]*amplitude < 129*amplitude)
-				{
-					 bufferL[i] = 128;
-				}
+			if((bufferL[i] > 128) && (bufferL[i] < (128 + amplitude)))
+			{
+			 	bufferL[i] = 128;
+			}
+			else if((bufferL[i] < 128) && (bufferL[i] > (128 - amplitude)))
+			{
+				bufferL[i] = 128;
+			}
 		}
 		for(int i = 0; i < halfBufferSize; i++)
 		{
-			if(bufferR[i]*amplitude < 129*amplitude)
-				{
-					 bufferR[i] = 128;
-				}
+			if((bufferR[i] > 128) && (bufferR[i] < (128 + amplitude)))
+			{
+			 	bufferR[i] = 128;
+			}
+			else if((bufferR[i] < 128) && (bufferR[i] > (128 - amplitude)))
+			{
+				bufferR[i] = 128;
+			}
 		}
 		for(i=0, j=0; j < bufferSize; i++, j += 2)
 		{
@@ -68,10 +76,14 @@ void NoiseGate::processBufferEight(FormatData& format_data, unsigned char* buffe
 		//NoiseGate processor for 8 bit mono
 		for(int i = 0; i < bufferSize; i++)
 		{
-			if(buffer[i]*amplitude < 129*amplitude)
-				{
-				 	buffer[i] = 128;
-				}
+			if((buffer[i] > 128) && (buffer[i] < (128 + amplitude)))
+			{
+			 	buffer[i] = 128;
+			}
+			else if((buffer[i] < 128) && (buffer[i] > (128 - amplitude)))
+			{
+				buffer[i] = 128;
+			}
 		}
 	}
 	else
