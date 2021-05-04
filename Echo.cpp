@@ -102,7 +102,7 @@ void Echo::processBufferSixteen(FormatData& format_data, unsigned short* buffer,
 	else if(format_data.num_channels == 1)
 	{
 		//Echo processor for 16 bit mono
-		for(int i = 0; i < (bufferSize / 2); i++)
+		for(int i = 0; i < (bufferSize); i++)
 		{
 			if(i > delay)
 			{

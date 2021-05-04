@@ -13,8 +13,8 @@
 class Echo: public Processor {	   
 public:
 	int delay;
-	void processBufferEight(FormatData& format_data, unsigned char* buffer, int bufferSize);
-	void processBufferSixteen(FormatData& format_data, unsigned short* buffer, int bufferSize);
+	void processBufferEight(FormatData& format_data, unsigned char* buffer, int bufferSize) override;
+	void processBufferSixteen(FormatData& format_data, unsigned short* buffer, int bufferSize) override;
 	Echo(int delay);
 	Echo();
 	int getDelay();

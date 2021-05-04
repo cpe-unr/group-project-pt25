@@ -92,7 +92,7 @@ void NoiseGate::processBufferEight(FormatData& format_data, unsigned char* buffe
 	}
 }	
 
-void NoiseGate::processBufferSixteen(FormatData& format_data, short* buffer, int bufferSize)
+void NoiseGate::processBufferSixteen(FormatData& format_data, unsigned short* buffer, int bufferSize)
 {
 	if(format_data.num_channels == 2)
 	{

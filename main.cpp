@@ -89,14 +89,38 @@ void fileProcessing(Wav &wav, const std::string &file_name)
   			case 1:
   				{
 					Processor *processor = new Echo(20000);
-	        		processor->processBufferEight(format_data, buffer_data.buffer, buffer_data.size);
+					if(format_data.bit_depth == 8)
+					{
+						processor->processBufferEight(format_data, buffer_data.buffer, buffer_data.size);
+					}
+	        		else if (format_data.bit_depth == 16)
+					{
+						//Treat byte buffer as 16-bit data instead of 8-bit data, the length becomes half
+						processor->processBufferSixteen(format_data, reinterpret_cast<unsigned short*>(buffer_data.buffer), buffer_data.size / 2);
+					}
+					else
+					{
+						throw std::runtime_error ("Unsupported Bit Depth");
+					}
 	        		delete processor;
         		}
     			break;
   			case 2:
   				{
 					//Processor *processor = new NoiseGate(3);
-	        		//processor->processBufferEight(format_data, buffer_data.buffer, buffer_data.size);
+					if(format_data.bit_depth == 8)
+					{
+						//processor->processBufferEight(format_data, buffer_data.buffer, buffer_data.size);
+					}
+	        		else if (format_data.bit_depth == 16)
+					{
+						//Treat byte buffer as 16-bit data instead of 8-bit data, the length becomes half
+						//processor->processBufferSixteen(format_data, reinterpret_cast<unsigned short*>(buffer_data.buffer), buffer_data.size / 2);
+					}
+					else
+					{
+						throw std::runtime_error ("Unsupported Bit Depth");
+					}
 	        		//delete processor;
         		}
     			break;

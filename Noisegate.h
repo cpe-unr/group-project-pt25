@@ -16,8 +16,8 @@ class NoiseGate : public Processor
 public:
 	NoiseGate();
 	NoiseGate(double amplitude);
-	void processBufferEight(FormatData& format_data, unsigned char* buffer, int bufferSize);
-	void processBufferSixteen(FormatData& format_data, short* buffer, int bufferSize);
+	void processBufferEight(FormatData& format_data, unsigned char* buffer, int bufferSize) override;
+	void processBufferSixteen(FormatData& format_data, unsigned short* buffer, int bufferSize) override;
 	double getAmp();
 	void setAmp(double amplitude);
 	virtual ~NoiseGate();
