@@ -1,0 +1,120 @@
+\hypertarget{classNormalizer}{}\section{Normalizer Class Reference}
+\label{classNormalizer}\index{Normalizer@{Normalizer}}
+
+
+Inheritance diagram for Normalizer\+:
+% FIG 0
+
+
+Collaboration diagram for Normalizer\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNormalizer_af576151323854ff0d4d7e37255c397d1}{Normalizer} ()
+\item 
+\hyperlink{classNormalizer_a9178648f9e33be07b9740c64af552efe}{Normalizer} (double amplitude)
+\item 
+void \hyperlink{classNormalizer_aff7ce2273db142a9a8b5d37dd0ef1c1c}{process\+Buffer\+Eight} (\hyperlink{structFormatData}{Format\+Data} \&format\+\_\+data, unsigned char $\ast$buffer, int buffer\+Size) override
+\item 
+void \hyperlink{classNormalizer_a50b7b5b618cb4721d4c34d1bb719ed02}{process\+Buffer\+Sixteen} (\hyperlink{structFormatData}{Format\+Data} \&format\+\_\+data, unsigned short $\ast$buffer, int buffer\+Size) override
+\item 
+double \hyperlink{classNormalizer_a919c2540717d44dc354f8fed1d56b891}{get\+Amp} ()
+\item 
+void \hyperlink{classNormalizer_a10e2783584e74931017b08c536b53048}{set\+Amp} (double amplitude)
+\item 
+virtual \hyperlink{classNormalizer_aa6437195b1223879aa1f14f211a965b5}{$\sim$\+Normalizer} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNormalizer_af576151323854ff0d4d7e37255c397d1}\label{classNormalizer_af576151323854ff0d4d7e37255c397d1}} 
+\index{Normalizer@{Normalizer}!Normalizer@{Normalizer}}
+\index{Normalizer@{Normalizer}!Normalizer@{Normalizer}}
+\subsubsection{\texorpdfstring{Normalizer()}{Normalizer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Normalizer\+::\+Normalizer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor for \hyperlink{classNormalizer}{Normalizer} class \mbox{\Hypertarget{classNormalizer_a9178648f9e33be07b9740c64af552efe}\label{classNormalizer_a9178648f9e33be07b9740c64af552efe}} 
+\index{Normalizer@{Normalizer}!Normalizer@{Normalizer}}
+\index{Normalizer@{Normalizer}!Normalizer@{Normalizer}}
+\subsubsection{\texorpdfstring{Normalizer()}{Normalizer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Normalizer\+::\+Normalizer (\begin{DoxyParamCaption}\item[{double}]{amplitude }\end{DoxyParamCaption})}
+
+parameterized constructor for \hyperlink{classNormalizer}{Normalizer} class 
+\begin{DoxyParams}{Parameters}
+{\em amplitude} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNormalizer_aa6437195b1223879aa1f14f211a965b5}\label{classNormalizer_aa6437195b1223879aa1f14f211a965b5}} 
+\index{Normalizer@{Normalizer}!````~Normalizer@{$\sim$\+Normalizer}}
+\index{````~Normalizer@{$\sim$\+Normalizer}!Normalizer@{Normalizer}}
+\subsubsection{\texorpdfstring{$\sim$\+Normalizer()}{~Normalizer()}}
+{\footnotesize\ttfamily Normalizer\+::$\sim$\+Normalizer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor for \hyperlink{classNormalizer}{Normalizer} class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNormalizer_a919c2540717d44dc354f8fed1d56b891}\label{classNormalizer_a919c2540717d44dc354f8fed1d56b891}} 
+\index{Normalizer@{Normalizer}!get\+Amp@{get\+Amp}}
+\index{get\+Amp@{get\+Amp}!Normalizer@{Normalizer}}
+\subsubsection{\texorpdfstring{get\+Amp()}{getAmp()}}
+{\footnotesize\ttfamily double Normalizer\+::get\+Amp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter for the amplitude attribute of \hyperlink{classNormalizer}{Normalizer} class \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNormalizer_aff7ce2273db142a9a8b5d37dd0ef1c1c}\label{classNormalizer_aff7ce2273db142a9a8b5d37dd0ef1c1c}} 
+\index{Normalizer@{Normalizer}!process\+Buffer\+Eight@{process\+Buffer\+Eight}}
+\index{process\+Buffer\+Eight@{process\+Buffer\+Eight}!Normalizer@{Normalizer}}
+\subsubsection{\texorpdfstring{process\+Buffer\+Eight()}{processBufferEight()}}
+{\footnotesize\ttfamily void Normalizer\+::process\+Buffer\+Eight (\begin{DoxyParamCaption}\item[{\hyperlink{structFormatData}{Format\+Data} \&}]{format\+\_\+data,  }\item[{unsigned char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Used to pass the buffer from function to function for 8-\/bit audio processing 
+\begin{DoxyParams}{Parameters}
+{\em format\+\_\+data} & \\
+\hline
+{\em buffer} & \\
+\hline
+{\em buffersize} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classProcessor}{Processor}.
+
+\mbox{\Hypertarget{classNormalizer_a50b7b5b618cb4721d4c34d1bb719ed02}\label{classNormalizer_a50b7b5b618cb4721d4c34d1bb719ed02}} 
+\index{Normalizer@{Normalizer}!process\+Buffer\+Sixteen@{process\+Buffer\+Sixteen}}
+\index{process\+Buffer\+Sixteen@{process\+Buffer\+Sixteen}!Normalizer@{Normalizer}}
+\subsubsection{\texorpdfstring{process\+Buffer\+Sixteen()}{processBufferSixteen()}}
+{\footnotesize\ttfamily void Normalizer\+::process\+Buffer\+Sixteen (\begin{DoxyParamCaption}\item[{\hyperlink{structFormatData}{Format\+Data} \&}]{format\+\_\+data,  }\item[{unsigned short $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Used to pass the buffer from function to function for 16-\/bit audio processing 
+\begin{DoxyParams}{Parameters}
+{\em format\+\_\+data} & \\
+\hline
+{\em buffer} & \\
+\hline
+{\em buffersize} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classProcessor}{Processor}.
+
+\mbox{\Hypertarget{classNormalizer_a10e2783584e74931017b08c536b53048}\label{classNormalizer_a10e2783584e74931017b08c536b53048}} 
+\index{Normalizer@{Normalizer}!set\+Amp@{set\+Amp}}
+\index{set\+Amp@{set\+Amp}!Normalizer@{Normalizer}}
+\subsubsection{\texorpdfstring{set\+Amp()}{setAmp()}}
+{\footnotesize\ttfamily void Normalizer\+::set\+Amp (\begin{DoxyParamCaption}\item[{double}]{amplitude }\end{DoxyParamCaption})}
+
+Setter for the amplitude attribute of \hyperlink{classNormalizer}{Normalizer} class 
+\begin{DoxyParams}{Parameters}
+{\em amplitude} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Normalization.\+h\item 
+Normalization.\+cpp\end{DoxyCompactItemize}

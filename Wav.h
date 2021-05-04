@@ -14,15 +14,55 @@
 class Wav
 {
 	public:
+
+		/**
+		 * constructor for Wav class
+		 */
+
 		Wav();
+
+		/**
+		 * parameterized constructor for Wav class
+		 * @param file_name
+		 */
+
 		Wav(const std::string &file_name);
+
+		/**
+		 * Destructor for Wav class
+		 */
+
 		~Wav();
 
 		FormatData formatData();
 		BufferData bufferData();
+
+		/**
+		 * Establishes an input file stream with the file the user states as a parameter
+		 * @param file_name
+		 */
+
 		void readFile(const std::string &file_name);
+
+		/**
+		 * Sets the title of the .wav file in the metadata
+		 * @param file_name
+		 */
+
 		void setTitle(const std::string &title);
+
+		/**
+		 * Sets the artist of the .wav file in the metadata
+		 * @param file_name
+		 */
+
 		void setArtist(const std::string &title);
+
+		/**
+		 * Saves the processed buffer as a new .wav file in the name the user was prompted for as a parameter
+		 * @param file_name
+		 */
+
 		void saveAs(const std::string &file_name);
 		std::string fileName();
 		void print();

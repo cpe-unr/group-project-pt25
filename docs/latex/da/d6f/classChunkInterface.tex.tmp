@@ -1,0 +1,59 @@
+\hypertarget{classChunkInterface}{}\section{Chunk\+Interface Class Reference}
+\label{classChunkInterface}\index{Chunk\+Interface@{Chunk\+Interface}}
+
+
+Inheritance diagram for Chunk\+Interface\+:
+% FIG 0
+
+
+Collaboration diagram for Chunk\+Interface\+:
+% FIG 1
+\subsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classChunkInterface_a55d83b6ee9ad9a154cb27f841453c6ce}\label{classChunkInterface_a55d83b6ee9ad9a154cb27f841453c6ce}} 
+enum {\bfseries Type} \{ {\bfseries unknown}, 
+{\bfseries format}, 
+{\bfseries data}, 
+{\bfseries list}
+ \}
+\end{DoxyCompactItemize}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classChunkInterface_a46a50861c43fc0a0acf062f7153a0f8c}\label{classChunkInterface_a46a50861c43fc0a0acf062f7153a0f8c}} 
+{\bfseries Chunk\+Interface} (const \hyperlink{structChunkHeader}{Chunk\+Header} \&)
+\item 
+\mbox{\Hypertarget{classChunkInterface_aa416671754e559b4c14df790dacad6ce}\label{classChunkInterface_aa416671754e559b4c14df790dacad6ce}} 
+std\+::string {\bfseries chunk\+Name} ()
+\item 
+\mbox{\Hypertarget{classChunkInterface_a5b39ccac9c239dbb09173ae04613ade8}\label{classChunkInterface_a5b39ccac9c239dbb09173ae04613ade8}} 
+std\+::size\+\_\+t {\bfseries chunk\+Size} ()
+\item 
+\mbox{\Hypertarget{classChunkInterface_ad81400f48be060b90f7e973516a2922f}\label{classChunkInterface_ad81400f48be060b90f7e973516a2922f}} 
+virtual void {\bfseries print} ()=0
+\item 
+\mbox{\Hypertarget{classChunkInterface_a99e89a0b1ad4218c3abfa59c1a35ab3b}\label{classChunkInterface_a99e89a0b1ad4218c3abfa59c1a35ab3b}} 
+virtual Type {\bfseries type} ()=0
+\item 
+\mbox{\Hypertarget{classChunkInterface_ae2b4a765156062611c8f810c0dede4b7}\label{classChunkInterface_ae2b4a765156062611c8f810c0dede4b7}} 
+virtual void {\bfseries write} (std\+::ofstream \&file)
+\item 
+\mbox{\Hypertarget{classChunkInterface_a3fbbdfaf9395620d35b309333e3588cf}\label{classChunkInterface_a3fbbdfaf9395620d35b309333e3588cf}} 
+virtual std\+::uint32\+\_\+t {\bfseries write\+Size} ()
+\item 
+\mbox{\Hypertarget{classChunkInterface_a306f69cfc7a937491ec140d1d44711f9}\label{classChunkInterface_a306f69cfc7a937491ec140d1d44711f9}} 
+virtual void {\bfseries write\+C\+SV} (std\+::ofstream \&file)=0
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{classChunkInterface_ac94051d0d94504ada6225cbefc66dbe4}\label{classChunkInterface_ac94051d0d94504ada6225cbefc66dbe4}} 
+\hyperlink{structChunkHeader}{Chunk\+Header} {\bfseries chunk\+\_\+header}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Chunk.\+h\item 
+Chunk.\+cpp\end{DoxyCompactItemize}

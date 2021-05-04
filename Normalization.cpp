@@ -46,17 +46,11 @@ void Normalizer::processBufferEight(FormatData& format_data, unsigned char* buff
 		}
 		for(int i = 0; i < halfBufferSize; i++)
 		{
-			if(bufferL[i]*amplitude < 129*amplitude)
-				{
-					 bufferL[i] = 128;
-				}
+			bufferL[i] = bufferL[i]*amplitude;
 		}
 		for(int i = 0; i < halfBufferSize; i++)
 		{
-			if(bufferR[i]*amplitude < 129*amplitude)
-				{
-					 bufferR[i] = 128;
-				}
+			bufferR[i] = bufferR[i]*amplitude;
 		}
 		for(i=0, j=0; j < bufferSize; i++, j += 2)
 		{
@@ -69,10 +63,7 @@ void Normalizer::processBufferEight(FormatData& format_data, unsigned char* buff
 		//NoiseGate processor for 8 bit mono
 		for(int i = 0; i < bufferSize; i++)
 		{
-			if(buffer[i]*amplitude < 129*amplitude)
-				{
-				 	buffer[i] = 128;
-				}
+			buffer[i] = buffer[i]*amplitude;
 		}
 	}
 	else

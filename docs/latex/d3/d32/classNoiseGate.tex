@@ -1,0 +1,120 @@
+\hypertarget{classNoiseGate}{}\section{Noise\+Gate Class Reference}
+\label{classNoiseGate}\index{Noise\+Gate@{Noise\+Gate}}
+
+
+Inheritance diagram for Noise\+Gate\+:
+% FIG 0
+
+
+Collaboration diagram for Noise\+Gate\+:
+% FIG 1
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classNoiseGate_ae9ccbe5934108f756ada0e492db5f71e}{Noise\+Gate} ()
+\item 
+\hyperlink{classNoiseGate_a254a2b41b16d3e647067d03e76af18da}{Noise\+Gate} (double amplitude)
+\item 
+void \hyperlink{classNoiseGate_a9d345943286cd00cdd4253f59ac37bd9}{process\+Buffer\+Eight} (\hyperlink{structFormatData}{Format\+Data} \&format\+\_\+data, unsigned char $\ast$buffer, int buffer\+Size) override
+\item 
+void \hyperlink{classNoiseGate_a3783dd6711323ae98c081256b6bb05ee}{process\+Buffer\+Sixteen} (\hyperlink{structFormatData}{Format\+Data} \&format\+\_\+data, unsigned short $\ast$buffer, int buffer\+Size) override
+\item 
+double \hyperlink{classNoiseGate_aa3bc6ff59a5448071d8b78ece44190e7}{get\+Amp} ()
+\item 
+void \hyperlink{classNoiseGate_af4c52da4c68bb5d94cfcf1eabc8a4544}{set\+Amp} (double amplitude)
+\item 
+virtual \hyperlink{classNoiseGate_abcdf1888710c86086b1a595189191afd}{$\sim$\+Noise\+Gate} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{classNoiseGate_ae9ccbe5934108f756ada0e492db5f71e}\label{classNoiseGate_ae9ccbe5934108f756ada0e492db5f71e}} 
+\index{Noise\+Gate@{Noise\+Gate}!Noise\+Gate@{Noise\+Gate}}
+\index{Noise\+Gate@{Noise\+Gate}!Noise\+Gate@{Noise\+Gate}}
+\subsubsection{\texorpdfstring{Noise\+Gate()}{NoiseGate()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Noise\+Gate\+::\+Noise\+Gate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+constructor for \hyperlink{classNoiseGate}{Noise\+Gate} class \mbox{\Hypertarget{classNoiseGate_a254a2b41b16d3e647067d03e76af18da}\label{classNoiseGate_a254a2b41b16d3e647067d03e76af18da}} 
+\index{Noise\+Gate@{Noise\+Gate}!Noise\+Gate@{Noise\+Gate}}
+\index{Noise\+Gate@{Noise\+Gate}!Noise\+Gate@{Noise\+Gate}}
+\subsubsection{\texorpdfstring{Noise\+Gate()}{NoiseGate()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Noise\+Gate\+::\+Noise\+Gate (\begin{DoxyParamCaption}\item[{double}]{amplitude }\end{DoxyParamCaption})}
+
+parameterized constructor for \hyperlink{classNoiseGate}{Noise\+Gate} class 
+\begin{DoxyParams}{Parameters}
+{\em amplitude} & \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{classNoiseGate_abcdf1888710c86086b1a595189191afd}\label{classNoiseGate_abcdf1888710c86086b1a595189191afd}} 
+\index{Noise\+Gate@{Noise\+Gate}!````~Noise\+Gate@{$\sim$\+Noise\+Gate}}
+\index{````~Noise\+Gate@{$\sim$\+Noise\+Gate}!Noise\+Gate@{Noise\+Gate}}
+\subsubsection{\texorpdfstring{$\sim$\+Noise\+Gate()}{~NoiseGate()}}
+{\footnotesize\ttfamily Noise\+Gate\+::$\sim$\+Noise\+Gate (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [virtual]}}
+
+Destructor for \hyperlink{classNoiseGate}{Noise\+Gate} class 
+
+\subsection{Member Function Documentation}
+\mbox{\Hypertarget{classNoiseGate_aa3bc6ff59a5448071d8b78ece44190e7}\label{classNoiseGate_aa3bc6ff59a5448071d8b78ece44190e7}} 
+\index{Noise\+Gate@{Noise\+Gate}!get\+Amp@{get\+Amp}}
+\index{get\+Amp@{get\+Amp}!Noise\+Gate@{Noise\+Gate}}
+\subsubsection{\texorpdfstring{get\+Amp()}{getAmp()}}
+{\footnotesize\ttfamily double Noise\+Gate\+::get\+Amp (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Getter for the amplitude attribute of \hyperlink{classNoiseGate}{Noise\+Gate} class \begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{classNoiseGate_a9d345943286cd00cdd4253f59ac37bd9}\label{classNoiseGate_a9d345943286cd00cdd4253f59ac37bd9}} 
+\index{Noise\+Gate@{Noise\+Gate}!process\+Buffer\+Eight@{process\+Buffer\+Eight}}
+\index{process\+Buffer\+Eight@{process\+Buffer\+Eight}!Noise\+Gate@{Noise\+Gate}}
+\subsubsection{\texorpdfstring{process\+Buffer\+Eight()}{processBufferEight()}}
+{\footnotesize\ttfamily void Noise\+Gate\+::process\+Buffer\+Eight (\begin{DoxyParamCaption}\item[{\hyperlink{structFormatData}{Format\+Data} \&}]{format\+\_\+data,  }\item[{unsigned char $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Used to pass the buffer from function to function for 8-\/bit audio processing 
+\begin{DoxyParams}{Parameters}
+{\em format\+\_\+data} & \\
+\hline
+{\em buffer} & \\
+\hline
+{\em buffersize} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classProcessor}{Processor}.
+
+\mbox{\Hypertarget{classNoiseGate_a3783dd6711323ae98c081256b6bb05ee}\label{classNoiseGate_a3783dd6711323ae98c081256b6bb05ee}} 
+\index{Noise\+Gate@{Noise\+Gate}!process\+Buffer\+Sixteen@{process\+Buffer\+Sixteen}}
+\index{process\+Buffer\+Sixteen@{process\+Buffer\+Sixteen}!Noise\+Gate@{Noise\+Gate}}
+\subsubsection{\texorpdfstring{process\+Buffer\+Sixteen()}{processBufferSixteen()}}
+{\footnotesize\ttfamily void Noise\+Gate\+::process\+Buffer\+Sixteen (\begin{DoxyParamCaption}\item[{\hyperlink{structFormatData}{Format\+Data} \&}]{format\+\_\+data,  }\item[{unsigned short $\ast$}]{buffer,  }\item[{int}]{buffer\+Size }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+Used to pass the buffer from function to function for 16-\/bit audio processing 
+\begin{DoxyParams}{Parameters}
+{\em format\+\_\+data} & \\
+\hline
+{\em buffer} & \\
+\hline
+{\em buffersize} & \\
+\hline
+\end{DoxyParams}
+
+
+Implements \hyperlink{classProcessor}{Processor}.
+
+\mbox{\Hypertarget{classNoiseGate_af4c52da4c68bb5d94cfcf1eabc8a4544}\label{classNoiseGate_af4c52da4c68bb5d94cfcf1eabc8a4544}} 
+\index{Noise\+Gate@{Noise\+Gate}!set\+Amp@{set\+Amp}}
+\index{set\+Amp@{set\+Amp}!Noise\+Gate@{Noise\+Gate}}
+\subsubsection{\texorpdfstring{set\+Amp()}{setAmp()}}
+{\footnotesize\ttfamily void Noise\+Gate\+::set\+Amp (\begin{DoxyParamCaption}\item[{double}]{amplitude }\end{DoxyParamCaption})}
+
+Setter for the amplitude attribute of \hyperlink{classNoiseGate}{Noise\+Gate} class 
+\begin{DoxyParams}{Parameters}
+{\em amplitude} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+Noisegate.\+h\item 
+Noisegate.\+cpp\end{DoxyCompactItemize}

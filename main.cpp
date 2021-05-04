@@ -33,6 +33,11 @@
  * \retval        ERR_FAILURE    An error occurred
  */
 
+/**
+ * Prompts the user for the name of the file the user wishes to read.
+ * @return
+ */
+
 std::string getFileName()
 {
     std::string file_name; //Name of the file without the .wav extension
@@ -40,6 +45,12 @@ std::string getFileName()
     std::cin >> file_name;
     return file_name;
 }
+
+/**
+ * Prompts the user for number of times the user wishes to process the file they selected
+ * @param amount
+ * @return
+ */
 
 int getAmount()
 {
@@ -49,6 +60,12 @@ int getAmount()
 	return amount;
 }
 
+/**
+ * Prompts the user the action they would like to perform on the file and prints the available actions to the screen
+ * @param choice
+ * @return
+ */
+
 int getMenuChoice()
 {
 	int choice = 0;
@@ -57,6 +74,12 @@ int getMenuChoice()
 	return choice;
 }
 
+/**
+ * Prompts the user which process they would like to perform on their selected audio file
+ * @param choice
+ * @return
+ */
+
 int getProcessorChoice()
 {
 	int choice = 0;
@@ -64,6 +87,12 @@ int getProcessorChoice()
 	std::cin >> choice;
 	return choice;
 }
+
+/**
+ * Prompts the user for the name of the new file they are saving and stores it as a string
+ * @param result
+ * @return
+ */
 
 std::string promptForString(const std::string &prompt_text)
 {
@@ -75,6 +104,15 @@ std::string promptForString(const std::string &prompt_text)
 	} while (result.empty());
 	return result;
 }
+
+/**
+ * Handles the calling of each processor based on user input
+ * @param amount
+ * @param processorChoice
+ * @param format_data
+ * @param buffer_data
+ * @return
+ */
 
 void fileProcessing(Wav &wav, const std::string &file_name)
 {
@@ -107,24 +145,41 @@ void fileProcessing(Wav &wav, const std::string &file_name)
     			break;
   			case 2:
   				{
-					//Processor *processor = new NoiseGate(3);
+					Processor *processor = new NoiseGate(3.0);
 					if(format_data.bit_depth == 8)
 					{
-						//processor->processBufferEight(format_data, buffer_data.buffer, buffer_data.size);
+						processor->processBufferEight(format_data, buffer_data.buffer, buffer_data.size);
 					}
 	        		else if (format_data.bit_depth == 16)
 					{
 						//Treat byte buffer as 16-bit data instead of 8-bit data, the length becomes half
-						//processor->processBufferSixteen(format_data, reinterpret_cast<unsigned short*>(buffer_data.buffer), buffer_data.size / 2);
+						processor->processBufferSixteen(format_data, reinterpret_cast<unsigned short*>(buffer_data.buffer), buffer_data.size / 2);
 					}
 					else
 					{
 						throw std::runtime_error ("Unsupported Bit Depth");
 					}
-	        		//delete processor;
+	        		delete processor;
         		}
     			break;
 			case 3:
+				{
+					Processor *processor = new Normalizer(0.5);
+					if(format_data.bit_depth == 8)
+					{
+						processor->processBufferEight(format_data, buffer_data.buffer, buffer_data.size);
+					}
+	        		else if (format_data.bit_depth == 16)
+					{
+						//Treat byte buffer as 16-bit data instead of 8-bit data, the length becomes half
+						processor->processBufferSixteen(format_data, reinterpret_cast<unsigned short*>(buffer_data.buffer), buffer_data.size / 2);
+					}
+					else
+					{
+						throw std::runtime_error ("Unsupported Bit Depth");
+					}
+	        		delete processor;
+        		}
     			break;
 			case 0:
 				i = amount;
@@ -136,6 +191,12 @@ void fileProcessing(Wav &wav, const std::string &file_name)
 			}
 	}
 }
+
+/**
+ * Main entry point of the program. Handles calls of functions for user interaction, file processing, and file generation
+ * @param menuChoice
+ * @return
+ */
 
 int main() {
 	try
