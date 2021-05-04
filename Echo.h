@@ -14,7 +14,7 @@ class Echo: public Processor {
 public:
 	int delay;
 	void processBufferEight(FormatData& format_data, unsigned char* buffer, int bufferSize);
-	void processBufferSixteen(FormatData& format_data, short* buffer, int bufferSize);
+	void processBufferSixteen(FormatData& format_data, unsigned short* buffer, int bufferSize);
 	Echo(int delay);
 	Echo();
 	int getDelay();

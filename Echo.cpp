@@ -77,7 +77,7 @@ void Echo::processBufferEight(FormatData& format_data, unsigned char* buffer, in
 	}
 }	
 
-void Echo::processBufferSixteen(FormatData& format_data, short* buffer, int bufferSize)
+void Echo::processBufferSixteen(FormatData& format_data, unsigned short* buffer, int bufferSize)
 {
 	if(format_data.num_channels == 2)
 	{
@@ -102,7 +102,7 @@ void Echo::processBufferSixteen(FormatData& format_data, short* buffer, int buff
 	else if(format_data.num_channels == 1)
 	{
 		//Echo processor for 16 bit mono
-		for(int i = 0; i < bufferSize; i++)
+		for(int i = 0; i < (bufferSize / 2); i++)
 		{
 			if(i > delay)
 			{

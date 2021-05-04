@@ -95,9 +95,9 @@ void fileProcessing(Wav &wav, const std::string &file_name)
     			break;
   			case 2:
   				{
-					Processor *processor = new NoiseGate(3);
-	        		processor->processBufferEight(format_data, buffer_data.buffer, buffer_data.size);
-	        		delete processor;
+					//Processor *processor = new NoiseGate(3);
+	        		//processor->processBufferEight(format_data, buffer_data.buffer, buffer_data.size);
+	        		//delete processor;
         		}
     			break;
 			case 3:

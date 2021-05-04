@@ -180,6 +180,7 @@ ListChunk::ListChunk(const ChunkHeader& header, std::ifstream& file)
 				std::string metadata;
 				metadata.resize(sub_chunk_header.chunk_size);
 				file.read((char*)metadata.data(), metadata.size());
+				metadata.pop_back(); //Remove extra trailing null terminator read into string
 				counter -= metadata.size();
 				//Save the subchunk data
 				subchunks.push_back(SubChunk {metadata_id, metadata});
@@ -232,12 +233,13 @@ void ListChunk::write(std::ofstream &file)
 	for(auto &subchunk : subchunks)
 	{
 		file.write(subchunk.metadata_id.data(), subchunk.metadata_id.size());
-		std::uint32_t size = subchunk.metadata.size();
+		std::uint32_t size = subchunk.metadata.size() + 1; //Plus one for null terminator
 		file.write((char*)&size, sizeof(uint32_t));
-		file.write(subchunk.metadata.data(), subchunk.metadata.size());
+		file.write(subchunk.metadata.c_str(), subchunk.metadata.size() + 1); //Plus one for null terminator
 	}
 }
 
+//Returns the number of bytes to be written for the subchunks
 std::uint32_t ListChunk::writeSubchunkSize()
 {
 	//Count the size of the subchunks not including the "INFO"
@@ -245,7 +247,7 @@ std::uint32_t ListChunk::writeSubchunkSize()
 	for(auto &subchunk : subchunks)
 	{
 		//Size of the subchunk header plus the metadata
-		result += sizeof(ChunkHeader) + subchunk.metadata.size();
+		result += sizeof(ChunkHeader) + subchunk.metadata.size() + 1; //Plus one for null terminator
 	}
 	return result;
 }
