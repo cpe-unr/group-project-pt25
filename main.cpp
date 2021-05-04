@@ -38,18 +38,6 @@ std::string getFileName()
     return file_name;
 }
 
-std::string setNewFileName(const std::string &file_name)
-{
-	std::string new_file_name;
-	do
-	{
-		std::cout << "Enter a new file name (different from original and with .wav extension)" << std::endl;;
-		std::cin >> new_file_name;
-	}
-	while(new_file_name == file_name);
-	return new_file_name;
-}
-
 int getAmount()
 {
 	int amount = 0;
@@ -61,7 +49,7 @@ int getAmount()
 int getMenuChoice()
 {
 	int choice = 0;
-	std::cout << "AUDIO MENU\n 1. Read File\n 2. Modify Metadata\n 3. Process File\n 4. Display File Information\n 0. End Program\n";
+	std::cout << "\nAUDIO MENU\n 1. Modify Metadata\n 2. Process File\n 3. Display File Information\n 4. Export CSV File\n 5. Save As\n 0. End Program\n\n";
 	std::cin >> choice;
 	return choice;
 }
@@ -69,9 +57,20 @@ int getMenuChoice()
 int getProcessorChoice()
 {
 	int choice = 0;
-	std::cout << "SELECT A PROCESSOR\n 1. Echo\n 2. Noise Gate\n 3. Normalize\n 0. Stop Modifying\n";
+	std::cout << "\nSELECT A PROCESSOR\n 1. Echo\n 2. Noise Gate\n 3. Normalize\n 0. Stop Modifying\n\n";
 	std::cin >> choice;
 	return choice;
+}
+
+std::string promptForString(const std::string &prompt_text)
+{
+	std::string result;
+	do
+	{
+		std::cout << prompt_text << std::endl;
+		std::cin >> result;	
+	} while (result.empty());
+	return result;
 }
 
 void fileProcessing(Wav &wav, const std::string &file_name)
@@ -106,45 +105,46 @@ void fileProcessing(Wav &wav, const std::string &file_name)
 			  	break;
 			}
 	}
-	std::string new_file_name = setNewFileName(file_name);
-	wav.saveAs(new_file_name);
 }
 
 int main() {
 	try
 	{
 		std::string file_name = getFileName();
-		//std::vector<Wav> waves;
-		Wav wav;
-		//std::string new_file_name = setNewFileName(file_name);
+		Wav wav {file_name};
+		std::cout << std::endl;
+		wav.print();
 		int menuChoice = 0;
 		do
 		{
 			menuChoice = getMenuChoice();
 			switch(menuChoice) {
 				case 1:
-					{
-						std::cout << "Read File" << std::endl;
-						//waves.push_back(Wav{file_name});
-						wav.readFile (file_name);
-						wav.print();
-					}
+					wav.setTitle(promptForString("Enter title"));
+					wav.setArtist(promptForString("Enter artist"));
 					break;
 				case 2:
-					std::cout << "Modify Metadata" << std::endl;
-						wav.setTitle("Lonely Heart");
-						wav.setArtist("No");
-					break;
-				case 3:
-					std::cout << "Process File" << std::endl;
-					//fileProcessing(waves.at(0));
 					fileProcessing(wav, file_name);
 					break;
+				case 3:
+					std::cout << std::endl;
+					wav.print();
+					std::cout << std::endl;
+					break;
 				case 4:
+					wav.appendCSV(promptForString("Enter CSV file to append to (with .csv extension)"));
+					break;
+				case 5:
 					{
-						std::cout << "Display File Information" << std::endl;
-						wav.print();
-						wav.appendCSV("test.csv");
+						auto new_file_name = promptForString("Enter a new file name (different from original and with .wav extension)");
+						if(new_file_name != wav.fileName())
+						{
+							wav.saveAs(new_file_name);
+						}
+						else
+						{
+							std::cout << "Please save to a different file name\n";
+						}
 					}
 					break;
 				case 0:
