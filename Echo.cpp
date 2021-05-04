@@ -31,8 +31,10 @@ void Echo::processBufferEight(FormatData& format_data, unsigned char* buffer, in
 		//Echo processor for 8 Bit stereo
 		int i, j;
 		int halfBufferSize = bufferSize / 2;
-		unsigned char* bufferL;
-		unsigned char* bufferR;
+		std::vector<unsigned char> bufferL;
+		std::vector<unsigned char> bufferR;
+		bufferL.resize(halfBufferSize);
+		bufferR.resize(halfBufferSize);
 		for(i = 0, j = 0; j < bufferSize; i ++, j += 2)
 		{
 			bufferL[i] = buffer[j];
