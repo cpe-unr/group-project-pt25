@@ -105,6 +105,7 @@ class ListChunk : public ChunkInterface
 		~ListChunk() override = default;
 		void print() override;
 		Type type() override;
+		void setMetadata(const std::string &tag, const std::string &metadata);
 		void write(std::ofstream &file) override;
 		std::uint32_t writeSubchunkSize();
 		std::uint32_t writeSize() override;
@@ -112,6 +113,8 @@ class ListChunk : public ChunkInterface
 	
 	private:
 		std::vector<SubChunk> subchunks;
+
+		SubChunk* find(const std::string &tag);
 };
 
 //************************UNKNOWN CHUNK

@@ -21,6 +21,8 @@ class Wav
 		FormatData formatData();
 		BufferData bufferData();
 		void readFile(const std::string &file_name);
+		void setTitle(const std::string &title);
+		void setArtist(const std::string &title);
 		void saveAs(const std::string &file_name);
 		std::string fileName();
 		void print();

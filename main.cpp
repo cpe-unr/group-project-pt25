@@ -127,10 +127,13 @@ int main() {
 						std::cout << "Read File" << std::endl;
 						//waves.push_back(Wav{file_name});
 						wav.readFile (file_name);
+						wav.print();
 					}
 					break;
 				case 2:
 					std::cout << "Modify Metadata" << std::endl;
+						wav.setTitle("Lonely Heart");
+						wav.setArtist("No");
 					break;
 				case 3:
 					std::cout << "Process File" << std::endl;

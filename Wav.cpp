@@ -65,6 +65,30 @@ void Wav::readFile(const std::string &input_file_name)
 	}
 }
 
+void Wav::setTitle(const std::string &title)
+{
+	auto list_chunk = find<ListChunk>(ChunkInterface::Type::list);
+	if(list_chunk == nullptr)
+	{
+		//Todo: Create an empty list chunk if null
+		std::cout << "Todo: No metadata to edit\n";
+		return;
+	}
+	list_chunk->setMetadata("INAM", title);
+}
+
+void Wav::setArtist(const std::string &artist)
+{
+	auto list_chunk = find<ListChunk>(ChunkInterface::Type::list);
+	if(list_chunk == nullptr)
+	{
+		//Todo: Create an empty list chunk if null
+		std::cout << "Todo: No metadata to edit\n";
+		return;
+	}
+	list_chunk->setMetadata("IART", artist);
+}
+
 void Wav::saveAs(const std::string &new_file_name)
 {
 	if(file_name != new_file_name)
@@ -79,7 +103,6 @@ void Wav::saveAs(const std::string &new_file_name)
 			{
 				chunk->write(file);
 			}
-			std::cout << "New Size: " << wav_header.wav_size << std::endl;
 			file.close();
 		}
 		else
@@ -193,7 +216,6 @@ void Wav::readWavFile(std::ifstream &file)
 	for(ChunkInterface *chunk = readChunk(file); chunk != nullptr; chunk = readChunk(file))
 	{	
 		chunks.push_back(chunk);
-		chunk->print();
 	}
 }
 
