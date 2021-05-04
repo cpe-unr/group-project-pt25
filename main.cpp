@@ -86,20 +86,16 @@ void fileProcessing(Wav &wav, const std::string &file_name)
 		switch(processorChoice) {
   			case 1:
   				{
-					std::cout << "Echo" << std::endl;
 					Processor *processor = new Echo(10000);
 	        		processor->processBuffer(format_data, buffer_data.buffer, buffer_data.size);
 	        		delete processor;
         		}
     			break;
   			case 2:
-				std::cout << "Noise Gate" << std::endl;
     			break;
 			case 3:
-				std::cout << "Normalizer" << std::endl;
     			break;
 			case 0:
-				std::cout << "Stopped" << std::endl;
 				i = amount;
 				break;
   			default:
