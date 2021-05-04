@@ -54,16 +54,11 @@ void Echo::processBuffer(FormatData& format_data, unsigned char* buffer, int buf
  		else if(format_data.num_channels == 1)
  		{
  			//Echo processor for 8 bit mono
-			int cDelay = delay;
-			for(int i = 0; i < bufferSize-1; i++)
+			for(int i = 0; i < bufferSize; i++)
 			{
-				if((buffer[i]) > 110)
+				if(i > delay)
 				{
-
-				}
-				else
-				{
-					buffer[i] = buffer[i] + buffer[i-cDelay];
+					buffer[i] = (buffer[i] * 0.7f) + ((buffer[i - delay]) * 0.3f);
 				}
 			}
 		}
@@ -99,16 +94,11 @@ void Echo::processBuffer(FormatData& format_data, unsigned char* buffer, int buf
 		else if(format_data.num_channels == 1)
 		{
 			//Echo processor for 16 bit mono
-			int cDelay = delay;
-			for (int i = 0; i <= bufferSize; i++)
+			for(int i = 0; i < bufferSize; i++)
 			{
-				if((buffer[i]) > 14090)
+				if(i > delay)
 				{
-
-				}
-				else
-				{
-					buffer[i] = buffer[i] + buffer[i-cDelay];
+					buffer[i] = (buffer[i] * 0.7f) + ((buffer[i - delay]) * 0.3f);
 				}
 			}
 		}
