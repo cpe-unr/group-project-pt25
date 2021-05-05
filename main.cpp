@@ -1,10 +1,10 @@
-/*
+/**
  * Authors: Kurtis LeMay, Amaan Sidhu, Matthew Devine
  * Date: May 2, 2021
  * Assignment: Semester Project
 */
 
-/* @file */
+/** @file */
 
 #include <iostream>
 #include "Echo.h"
@@ -12,7 +12,7 @@
 #include "Normalization.h"
 #include "Wav.h"
 
-/*
+/**
  * \brief   The function bar.
  *
  * \details This function does something which is doing nothing. So this text
