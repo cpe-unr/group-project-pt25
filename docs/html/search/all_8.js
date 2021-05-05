@@ -1,6 +1,5 @@
 var searchData=
 [
-  ['processbuffereight',['processBufferEight',['../dc/dd7/classEcho.html#abe45c85f9a1206ccc6f17e329f831b50',1,'Echo::processBufferEight()'],['../d3/d32/classNoiseGate.html#a9d345943286cd00cdd4253f59ac37bd9',1,'NoiseGate::processBufferEight()'],['../dc/d6d/classNormalizer.html#aff7ce2273db142a9a8b5d37dd0ef1c1c',1,'Normalizer::processBufferEight()']]],
-  ['processbuffersixteen',['processBufferSixteen',['../dc/dd7/classEcho.html#adc142cd667b7ada7e538cfdf7039c96d',1,'Echo::processBufferSixteen()'],['../d3/d32/classNoiseGate.html#a3783dd6711323ae98c081256b6bb05ee',1,'NoiseGate::processBufferSixteen()'],['../dc/d6d/classNormalizer.html#a50b7b5b618cb4721d4c34d1bb719ed02',1,'Normalizer::processBufferSixteen()']]],
-  ['processor',['Processor',['../db/d9f/classProcessor.html',1,'']]]
+  ['noisegate',['NoiseGate',['../d3/d32/classNoiseGate.html',1,'NoiseGate'],['../d3/d32/classNoiseGate.html#ae9ccbe5934108f756ada0e492db5f71e',1,'NoiseGate::NoiseGate()'],['../d3/d32/classNoiseGate.html#a254a2b41b16d3e647067d03e76af18da',1,'NoiseGate::NoiseGate(double amplitude)']]],
+  ['normalizer',['Normalizer',['../dc/d6d/classNormalizer.html',1,'Normalizer'],['../dc/d6d/classNormalizer.html#af576151323854ff0d4d7e37255c397d1',1,'Normalizer::Normalizer()'],['../dc/d6d/classNormalizer.html#a9178648f9e33be07b9740c64af552efe',1,'Normalizer::Normalizer(double amplitude)']]]
 ];

@@ -1,8 +1,6 @@
 var searchData=
 [
-  ['saveas',['saveAs',['../de/dd3/classWav.html#a67710ef5028074bbeccf84b662c89baa',1,'Wav']]],
-  ['setamp',['setAmp',['../d3/d32/classNoiseGate.html#af4c52da4c68bb5d94cfcf1eabc8a4544',1,'NoiseGate::setAmp()'],['../dc/d6d/classNormalizer.html#a10e2783584e74931017b08c536b53048',1,'Normalizer::setAmp()']]],
-  ['setartist',['setArtist',['../de/dd3/classWav.html#a5542e8f6a3c8fc54b2acfb31683d52a6',1,'Wav']]],
-  ['setdelay',['setDelay',['../dc/dd7/classEcho.html#a3096c57223d6f7ce3097d15e8bf4a0ed',1,'Echo']]],
-  ['settitle',['setTitle',['../de/dd3/classWav.html#afa78c8a77ee91541fc13bfb9a71f0cfa',1,'Wav']]]
+  ['processbuffereight',['processBufferEight',['../dc/dd7/classEcho.html#abe45c85f9a1206ccc6f17e329f831b50',1,'Echo::processBufferEight()'],['../d3/d32/classNoiseGate.html#a9d345943286cd00cdd4253f59ac37bd9',1,'NoiseGate::processBufferEight()'],['../dc/d6d/classNormalizer.html#aff7ce2273db142a9a8b5d37dd0ef1c1c',1,'Normalizer::processBufferEight()']]],
+  ['processbuffersixteen',['processBufferSixteen',['../dc/dd7/classEcho.html#adc142cd667b7ada7e538cfdf7039c96d',1,'Echo::processBufferSixteen()'],['../d3/d32/classNoiseGate.html#a3783dd6711323ae98c081256b6bb05ee',1,'NoiseGate::processBufferSixteen()'],['../dc/d6d/classNormalizer.html#a50b7b5b618cb4721d4c34d1bb719ed02',1,'Normalizer::processBufferSixteen()']]],
+  ['promptforstring',['promptForString',['../df/d0a/main_8cpp.html#af5796a89cf072513ea347401ac887654',1,'main.cpp']]]
 ];

@@ -1,0 +1,156 @@
+\hypertarget{main_8cpp}{}\section{main.\+cpp File Reference}
+\label{main_8cpp}\index{main.\+cpp@{main.\+cpp}}
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include \char`\"{}Echo.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Noisegate.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Normalization.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}Wav.\+h\char`\"{}}\newline
+Include dependency graph for main.\+cpp\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+std\+::string \hyperlink{main_8cpp_af24b297cb2d75fd05f5b8a441e00010e}{get\+File\+Name} ()
+\begin{DoxyCompactList}\small\item\em The function bar. \end{DoxyCompactList}\item 
+int \hyperlink{main_8cpp_a6b5be2d60c11f5856973d804cb061329}{get\+Amount} ()
+\item 
+int \hyperlink{main_8cpp_a209d2105e9ad36e42b5474ad80c9beba}{get\+Menu\+Choice} ()
+\item 
+int \hyperlink{main_8cpp_a11d067559ef6433616603e26d4a320be}{get\+Processor\+Choice} ()
+\item 
+std\+::string \hyperlink{main_8cpp_af5796a89cf072513ea347401ac887654}{prompt\+For\+String} (const std\+::string \&prompt\+\_\+text)
+\item 
+void \hyperlink{main_8cpp_ac0ca1fd2de5c21b22ba2959ee4881164}{file\+Processing} (\hyperlink{classWav}{Wav} \&wav, const std\+::string \&file\+\_\+name)
+\item 
+int \hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8cpp_ac0ca1fd2de5c21b22ba2959ee4881164}\label{main_8cpp_ac0ca1fd2de5c21b22ba2959ee4881164}} 
+\index{main.\+cpp@{main.\+cpp}!file\+Processing@{file\+Processing}}
+\index{file\+Processing@{file\+Processing}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{file\+Processing()}{fileProcessing()}}
+{\footnotesize\ttfamily void file\+Processing (\begin{DoxyParamCaption}\item[{\hyperlink{classWav}{Wav} \&}]{wav,  }\item[{const std\+::string \&}]{file\+\_\+name }\end{DoxyParamCaption})}
+
+Handles the calling of each processor based on user input 
+\begin{DoxyParams}{Parameters}
+{\em amount} & \\
+\hline
+{\em processor\+Choice} & \\
+\hline
+{\em format\+\_\+data} & \\
+\hline
+{\em buffer\+\_\+data} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8cpp_a6b5be2d60c11f5856973d804cb061329}\label{main_8cpp_a6b5be2d60c11f5856973d804cb061329}} 
+\index{main.\+cpp@{main.\+cpp}!get\+Amount@{get\+Amount}}
+\index{get\+Amount@{get\+Amount}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Amount()}{getAmount()}}
+{\footnotesize\ttfamily int get\+Amount (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prompts the user for number of times the user wishes to process the file they selected 
+\begin{DoxyParams}{Parameters}
+{\em amount} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8cpp_af24b297cb2d75fd05f5b8a441e00010e}\label{main_8cpp_af24b297cb2d75fd05f5b8a441e00010e}} 
+\index{main.\+cpp@{main.\+cpp}!get\+File\+Name@{get\+File\+Name}}
+\index{get\+File\+Name@{get\+File\+Name}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{get\+File\+Name()}{getFileName()}}
+{\footnotesize\ttfamily std\+::string get\+File\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+The function bar. 
+
+This function does something which is doing nothing. So this text is totally senseless and you really do not need to read this, because this text is basically saying nothing.
+
+\begin{DoxyNote}{Note}
+This text shall only show you, how such a "note" section is looking. There is nothing which really needs your notice, so you do not really need to read this section.
+\end{DoxyNote}
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em a} & Description of parameter a. \\
+\hline
+\mbox{\tt out}  & {\em b} & Description of the parameter b. \\
+\hline
+\mbox{\tt in,out}  & {\em c} & Description of the parameter c.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The error return code of the function.
+\end{DoxyReturn}
+
+\begin{DoxyRetVals}{Return values}
+{\em E\+R\+R\+\_\+\+S\+U\+C\+C\+E\+SS} & The function is successfully executed \\
+\hline
+{\em E\+R\+R\+\_\+\+F\+A\+I\+L\+U\+RE} & An error occurred Prompts the user for the name of the file the user wishes to read. \\
+\hline
+\end{DoxyRetVals}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8cpp_a209d2105e9ad36e42b5474ad80c9beba}\label{main_8cpp_a209d2105e9ad36e42b5474ad80c9beba}} 
+\index{main.\+cpp@{main.\+cpp}!get\+Menu\+Choice@{get\+Menu\+Choice}}
+\index{get\+Menu\+Choice@{get\+Menu\+Choice}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Menu\+Choice()}{getMenuChoice()}}
+{\footnotesize\ttfamily int get\+Menu\+Choice (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prompts the user the action they would like to perform on the file and prints the available actions to the screen 
+\begin{DoxyParams}{Parameters}
+{\em choice} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8cpp_a11d067559ef6433616603e26d4a320be}\label{main_8cpp_a11d067559ef6433616603e26d4a320be}} 
+\index{main.\+cpp@{main.\+cpp}!get\+Processor\+Choice@{get\+Processor\+Choice}}
+\index{get\+Processor\+Choice@{get\+Processor\+Choice}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{get\+Processor\+Choice()}{getProcessorChoice()}}
+{\footnotesize\ttfamily int get\+Processor\+Choice (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Prompts the user which process they would like to perform on their selected audio file 
+\begin{DoxyParams}{Parameters}
+{\em choice} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}} 
+\index{main.\+cpp@{main.\+cpp}!main@{main}}
+\index{main@{main}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+Main entry point of the program. Handles calls of functions for user interaction, file processing, and file generation 
+\begin{DoxyParams}{Parameters}
+{\em menu\+Choice} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\mbox{\Hypertarget{main_8cpp_af5796a89cf072513ea347401ac887654}\label{main_8cpp_af5796a89cf072513ea347401ac887654}} 
+\index{main.\+cpp@{main.\+cpp}!prompt\+For\+String@{prompt\+For\+String}}
+\index{prompt\+For\+String@{prompt\+For\+String}!main.\+cpp@{main.\+cpp}}
+\subsubsection{\texorpdfstring{prompt\+For\+String()}{promptForString()}}
+{\footnotesize\ttfamily std\+::string prompt\+For\+String (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{prompt\+\_\+text }\end{DoxyParamCaption})}
+
+Prompts the user for the name of the new file they are saving and stores it as a string 
+\begin{DoxyParams}{Parameters}
+{\em result} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
